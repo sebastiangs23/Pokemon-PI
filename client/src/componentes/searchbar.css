@@ -1,0 +1,11 @@
+.contenedor-searchbar{
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 0px;
+}
+
+.contenedor-input-boton{
+    margin: 5px;
+}
