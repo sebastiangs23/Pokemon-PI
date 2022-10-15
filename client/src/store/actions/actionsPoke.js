@@ -26,26 +26,20 @@ export function getPokemonByName(name) { //estas aun estoy en duda quizas hay qu
     }
 }
 
+export function getPokemonsAlphabetic(payload){
+    return {
+        type: "FILTER_ALPHABETIC",
+        payload: payload
+    }
+}
 
-//export function getPokemonsType() { //estas aun estoy en duda quizas hay que cambiar algo
-//    return function (dispatch) {
-//        axios.get("http://localhost:3001/home/pokemons/types").then((t) => {
-//            return dispatch({
-//                type: "GET_POKEMONS_TYPE",
-//                payload: t.data
-//            })
-//        })
-//    }
-//}
+export function getPokemonAtack(payload){
+    return {
+        type: "FILTER_ATACK",
+        payload: payload
+    }
+}
 
 
-//export function getPokemonById(id) {//estas aun estoy en duda quizas hay que cambiar algo
-//    return function (dispatch) {
-//        axios.get(`http://localhost:3001/home/pokemons/codigo/${id}`).then((p) => {
-//            return dispatch({
-//                type: "GET_POKEMONS_BYID",
-//                payload: p.data
-//            })
-//        })
-//    }
-//}
+
+

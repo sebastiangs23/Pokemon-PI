@@ -2,7 +2,6 @@
     margin-top: 150px;
 }
 
-
 .individual-cards{
     padding: 10px;
     min-width: 200px;
@@ -11,6 +10,7 @@
     border: 5px solid black;
     margin-left :5px ;
     margin-right: 5px;
+    background-color: white;
 }
 
 img{
@@ -18,5 +18,9 @@ img{
 }
 
 .contenedor-filtros-alfabetico{
+    margin-top: 100px;
+}
+
+.contenedor-filtros-fuerza{
     margin-top: 100px;
 }
