@@ -84,7 +84,7 @@ __IMPORTANTE__: Para las funcionalidades de filtrado y ordenamiento NO pueden ut
 - GET <https://pokeapi.co/api/v2/pokemon>
 - GET <https://pokeapi.co/api/v2/pokemon/{id}>
 - GET <https://pokeapi.co/api/v2/pokemon/{name}>
-- GET <https://pokeapi.co/api/v2/type>
+- GET <https://pokeapi.co/api/v2/type> //?
 
 ### Requerimientos mínimos
 
