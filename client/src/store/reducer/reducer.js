@@ -72,7 +72,7 @@ const reducer = (state = initialState, action) => {
             }    
 
         case "FILTER_BY_TYPE":
-            const saveState = state.pokemons
+            const saveState = state.pokemons //El no poder encontrar mi pokemon creado, supongamos electrico, quizar el error este aca
 
             var respuesta = saveState;
             let orden = action.payload;
@@ -98,6 +98,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokemonsfiltrados: action.payload
             } 
+
+        //Me el formulario en el front para crear el pokemon y me actualice el state
+        //El problema que tengo ahora es que creo un poke de tipo electric y en el filtro de electric no me aparece
+
+        // case "CREATE_POKE_FRONT" ...
 
         default:
             return {

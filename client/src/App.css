@@ -3,7 +3,11 @@
 }
 
 body{
-  background-color: lightblue;
+  background: url("https://cdn.fansshare.com/image/motive/texture-colors-with-motive-texturas-la-textura-abstracci-fondo-colores-motive-394366141.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .App-logo {
   height: 40vmin;

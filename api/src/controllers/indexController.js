@@ -46,7 +46,6 @@ const getPokemonApi = async (req, res) => { //Fn que trae los datos necesarios d
 
 const getPokemonApiSend = async (req,res) => {//fn exclusiva para saber en el filtro los pokemones que no hemos creado nosotros 
     const send = await getPokemonApi()
-    console.log(send)
     res.send(send)
 } 
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { connect } from "react-redux"; //Ya no necesito el connect 
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate } from "../store/actions/actionsPoke"
 import SearchBar from "./searchbar";
@@ -101,7 +100,7 @@ function Home() {
                             <h2> {p.name} </h2>
 
                             <h3> { typeof p.types[0] === "string"? p.types.map((cadauno) =>{ return <p>{cadauno}</p> })
-                            :   <p> {p.types[0].name} </p>  }</h3>
+                            :   <p> {p.types[0].name} </p>  }</h3>{/*Solo me va renderizar el 1ero,posible error al momento de renderizar 2*/}
 
                             <img src={p.image} />
                         </div>
