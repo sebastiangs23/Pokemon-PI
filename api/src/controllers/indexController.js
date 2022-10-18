@@ -44,6 +44,12 @@ const getPokemonApi = async (req, res) => { //Fn que trae los datos necesarios d
     }
 }
 
+const getPokemonApiSend = async (req,res) => {//fn exclusiva para saber en el filtro los pokemones que no hemos creado nosotros 
+    const send = await getPokemonApi()
+    console.log(send)
+    res.send(send)
+} 
+
 const getAllPokemons = async (req, res) => {
     try {
         const allPokeApi = await getPokemonApi() //De la API
@@ -59,7 +65,7 @@ const getAllPokemons = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(400).send("Error al cargar todos los pokemones")
-    }
+    }   
 }
 
 const getPokemonsById = async (req, res) => {
@@ -155,8 +161,8 @@ const getPokemonByName = async (req, res) => {
 
 const createPokemonBd = async (req, res) => {
     try {
-        const { name, types, hp, attack, defense, speed, height, weight, } = req.body
-        const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight })
+        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
+        const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image })
         const nuevoType = await Types.create({ name: types })
         nuevoPoke.addTypes(nuevoType)
         res.status(200).send("Pokemon creado con exito")
@@ -176,6 +182,19 @@ const getTypePokemon = async (req, res) => {  //Solo me trae los tipos de los 40
 
 }
 
+const getPokemonsCratedByMyself = async(req,res) => {
+    try{
+        const myPokes = await Pokemon.findAll({
+            include:[{
+                model: Types,
+                attributes: ["name"]
+            }]
+        })
+        res.status(200).send(myPokes)
+    }catch(error){
+        console.log(error)
+    }
+}
 
 
 
@@ -183,4 +202,5 @@ const getTypePokemon = async (req, res) => {  //Solo me trae los tipos de los 40
 
 
 
-module.exports = { getPokemonApi, getAllPokemons, getPokemonByName, getTypePokemon, getPokemonsById, createPokemonBd }
+
+module.exports = { getPokemonApi,getPokemonApiSend, getAllPokemons, getPokemonByName, getTypePokemon, getPokemonsById,getPokemonsCratedByMyself, createPokemonBd }

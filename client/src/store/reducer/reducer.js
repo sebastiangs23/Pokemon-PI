@@ -1,3 +1,4 @@
+import axios from "axios";
 const initialState = { pokemons: [] , pokemonsfiltrados: []};   
 
 function filterAlphab(pokemons, payload) {
@@ -27,7 +28,6 @@ function filterStrongest(pokemons, payload) {
     })
     return moreless
 }
-
 
 //REPASAR ESTA MIERDA Y REVISAR 
 const reducer = (state = initialState, action) => {
@@ -91,6 +91,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokemonsfiltrados: respuesta,
             }
+
+        case "GET_ONLY_CREATE":
+            console.log(action.payload)           
+            return {
+                ...state,
+                pokemonsfiltrados: action.payload
+            } 
 
         default:
             return {

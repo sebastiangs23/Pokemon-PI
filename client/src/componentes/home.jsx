@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { connect } from "react-redux"; //Ya no necesito el connect 
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter} from "../store/actions/actionsPoke"
+import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate } from "../store/actions/actionsPoke"
 import SearchBar from "./searchbar";
 import "./home.css"
 
@@ -12,15 +12,15 @@ function Home() {
 
     const saveState = useSelector(state => state.pokemonsfiltrados) //Ya no necesito el mapState pq con useSelector guardo el estado en una variable
     // console.log(saveState)
-    
+
     useEffect(() => {
-        dispatch(getPokemonsBack()) 
-        dispatch(getPokemonsBackAgain()) 
-        dispatch(getPokemonType()) 
+        dispatch(getPokemonsBack())
+        dispatch(getPokemonsBackAgain())
+        dispatch(getPokemonType())
         dispatch(getFilter())
     }, [])
 
-    function handleClick(e){
+    function handleClick(e) {
         e.preventDefault()
         dispatch(getPokemonsBackAgain())
     }
@@ -42,6 +42,11 @@ function Home() {
         dispatch(getPokemonType(e.target.value));
     }
 
+    function handleApioCreate(e){
+        e.preventDefault()
+        dispatch(getOnlyCreate(e.target.value))
+    }
+
 
 
 
@@ -56,7 +61,7 @@ function Home() {
 
             <div className="filtros-conteiner">
                 <select onChange={(e) => handleSortName(e)} className="contenedor-filtros-alfabetico">
-                    <option value="all" > Attack </option>
+                    <option value="all" > Alphabetic </option>
                     <option value="asc" > A-Z </option>
                     <option value="des" > Z-A </option>
                 </select>
@@ -67,9 +72,14 @@ function Home() {
                     <option value="less" > Weaker </option>
                 </select>
 
+                <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
+                    <option value="all" > Found By </option>
+                    <option value="us"> Create for us </option>
+                    <option value="db"> Data Base </option>
+                </select>
 
-                <select onChange={(e) => {handleFilterType(e)}} className="contenedor-tipos">
-                    <option value="all" > - </option>
+                <select onChange={(e) => { handleFilterType(e) }} className="contenedor-tipos">
+                    <option value="all" > Pokemon Type </option>
                     <option value="grass" > Grass </option>
                     <option value="fire" > Fire </option>
                     <option value="water" > Water </option>
@@ -89,7 +99,10 @@ function Home() {
                     return (
                         <div className="individual-cards">
                             <h2> {p.name} </h2>
-                            <h3> {p.types.map((cadauno) => { return <p>{cadauno}</p> })} </h3>
+
+                            <h3> { typeof p.types[0] === "string"? p.types.map((cadauno) =>{ return <p>{cadauno}</p> })
+                            :   <p> {p.types[0].name} </p>  }</h3>
+
                             <img src={p.image} />
                         </div>
                     )

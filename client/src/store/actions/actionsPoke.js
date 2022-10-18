@@ -38,21 +38,21 @@ export function getPokemonByName(name) { //estas aun estoy en duda quizas hay qu
     }
 }
 
-export function getPokemonsAlphabetic(payload){
+export function getPokemonsAlphabetic(payload) {
     return {
         type: "FILTER_ALPHABETIC",
         payload: payload
     }
 }
 
-export function getPokemonAtack(payload){
+export function getPokemonAtack(payload) {
     return {
         type: "FILTER_ATACK",
         payload: payload
     }
 }
 
-export function getFilter(){ //Linea 21 del componente //Lo que hace es actualizar el estado e instantaneamente el estado vuelve a tener todo y
+export function getFilter() { //Linea 21 del componente //Lo que hace es actualizar el estado e instantaneamente el estado vuelve a tener todo y
     return {                // no se setea por el de pokemones filtrados
         type: "GET_FILTER"
     }
@@ -60,11 +60,43 @@ export function getFilter(){ //Linea 21 del componente //Lo que hace es actualiz
 
 export function getPokemonType(payload) { //Toda esta fn cambiada
     return {
-      type: "FILTER_BY_TYPE",
-      payload,
+        type: "FILTER_BY_TYPE",
+        payload,
     };
-  }
+}
 
+export function getOnlyCreate(payload) {
 
+    if (payload === "us") { //En caso sea creado por nosotros
+        return function (dispatch) {
+            axios.get("http://localhost:3001/home/pokemons/mypokemons").then((p) => {
+                return dispatch({
+                    type: "GET_ONLY_CREATE",
+                    payload: p.data
+                })
+            })
+        }
+    }
+    if (payload === "db") { //En caso sea este en la API //El problema de este es que me trae los que creo tambien
+        return function (dispatch) {
+            axios.get("http://localhost:3001/home/pokemons/apipokemons").then((p) => {
+                return dispatch({
+                    type: "GET_ONLY_CREATE",
+                    payload: p.data
+                })
+            })
+        }
+    }
 
+    else {
+        return function (dispatch) {  //"all"
+            axios.get("http://localhost:3001/home/pokemons/apipokemons").then((p) => {
+                return dispatch({
+                    type: "GET_ONLY_CREATE",
+                    payload: p.data
+                })
+            })
+        }
+    }
+}
 
