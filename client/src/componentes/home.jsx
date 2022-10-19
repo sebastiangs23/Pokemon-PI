@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate } from "../store/actions/actionsPoke"
 import SearchBar from "./searchbar";
 import "./home.css"
+
 
 
 function Home() {
@@ -41,7 +43,7 @@ function Home() {
         dispatch(getPokemonType(e.target.value));
     }
 
-    function handleApioCreate(e){
+    function handleApioCreate(e) {
         e.preventDefault()
         dispatch(getOnlyCreate(e.target.value))
     }
@@ -57,6 +59,11 @@ function Home() {
             </header>
 
             <button className="intento-intento" onClick={e => { handleClick(e) }}> Volver a cargar </button>
+
+
+            <Link to="/home/create">
+                <button className="button-create" > + Create </button>
+            </Link>
 
             <div className="filtros-conteiner">
                 <select onChange={(e) => handleSortName(e)} className="contenedor-filtros-alfabetico">
@@ -99,8 +106,8 @@ function Home() {
                         <div className="individual-cards">
                             <h2> {p.name} </h2>
 
-                            <h3> { typeof p.types[0] === "string"? p.types.map((cadauno) =>{ return <p>{cadauno}</p> })
-                            :   <p> {p.types[0].name} </p>  }</h3>{/*Solo me va renderizar el 1ero,posible error al momento de renderizar 2*/}
+                            <h3> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <p>{cadauno}</p> })
+                                : <p> {p.types[0].name} </p>}</h3>{/*Solo me va renderizar el 1ero,posible error al momento de renderizar 2*/}
 
                             <img src={p.image} />
                         </div>

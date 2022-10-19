@@ -17,6 +17,13 @@ img{
     max-width: 200px;
 }
 
+.button-create{
+    padding: 5px;
+    margin: 10px;
+    cursor: pointer;
+
+}
+
 .contenedor-filtros-alfabetico{
     margin-top: 60px;
 }

@@ -31,6 +31,7 @@
 
 
 .contenedor-form-createpokemon button{
+    cursor: pointer;
     background-color: #82C5C7;
     border-radius: 50px;
     width: 350px;
@@ -62,4 +63,12 @@
 .imagen-component-create{
     display: inline-block;
     max-width: 800px;
+}
+
+.boton-back{
+    cursor: pointer;
+    font-size: 20px;
+    height: 40px;
+    padding: 5px;
+    margin: 10px;
 }
