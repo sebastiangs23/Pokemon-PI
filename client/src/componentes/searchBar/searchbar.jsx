@@ -1,7 +1,7 @@
 import "./searchbar.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemonByName } from "../store/actions/actionsPoke"
+import { getPokemonByName } from "../../store/actions/actionsPoke"
 
 function SearchBar() {
     const dispatch = useDispatch()

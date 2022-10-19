@@ -100,3 +100,19 @@ export function getOnlyCreate(payload) {
     }
 }
 
+export function postPokemon(payload){
+    return async function(dispatch){
+        try{
+            const upload = await axios.post("http://localhost:3001/home/pokemons", payload) //Sintaxis similar ala de postmanx
+            return upload 
+        }catch(error){
+            console.log(error)
+        }
+    }
+    
+    
+
+
+//Voy a necesitar una action que me traiga los detalles del pokemon el cual haya hecho click
+
+}

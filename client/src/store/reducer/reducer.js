@@ -102,7 +102,12 @@ const reducer = (state = initialState, action) => {
         //Me el formulario en el front para crear el pokemon y me actualice el state
         //El problema que tengo ahora es que creo un poke de tipo electric y en el filtro de electric no me aparece
 
-        // case "CREATE_POKE_FRONT" ...
+        // case "CREATE_POKE_FRONT" ..
+
+        case "POST_POKEMON":
+            return {
+                ...state
+            }
 
         default:
             return {
