@@ -1,4 +1,3 @@
-import axios from "axios";
 const initialState = { pokemons: [] , pokemonsfiltrados: []};   
 
 function filterAlphab(pokemons, payload) {
@@ -72,24 +71,19 @@ const reducer = (state = initialState, action) => {
             }    
 
         case "FILTER_BY_TYPE":
-            const saveState = state.pokemons //El no poder encontrar mi pokemon creado, supongamos electrico, quizar el error este aca
+            const saveState = state.pokemons 
 
-            var respuesta = saveState;
-            let orden = action.payload;
-            if (action.payload === "grass") respuesta = saveState.filter((x) => x.types[0] === "grass" || x.types[1] === "grass")
-            else if (action.payload === "fire") respuesta = saveState.filter((x) => x.types[0] === "fire" || x.types[1] === "fire")
-            else if (action.payload === "water") respuesta = saveState.filter((x) => x.types[0] === "water" || x.types[1] === "water")
-            else if (action.payload === "bug") respuesta = saveState.filter((x) => x.types[0] === "bug" || x.types[1] === "bug")
-            else if (action.payload === "normal") respuesta = saveState.filter((x) => x.types[0] === "normal" || x.types[1] === "normal")
-            else if (action.payload === "poison") respuesta = saveState.filter((x) => x.types[0] === "poison" || x.types[1] === "poison")
-            else if (action.payload === "electric") respuesta = saveState.filter((x) => x.types[0] === "electric" || x.types[1] === "electric")
-            else if (action.payload === "ground") respuesta = saveState.filter((x) => x.types[0] === "ground" || x.types[1] === "ground")
-            else if (action.payload === "fairy") respuesta = saveState.filter((x) => x.types[0] === "fairy" || x.types[1] === "fairy")
-            console.log(respuesta)
+
+            const filtro = saveState.filter((x) => x.types[0].name === action.payload || //El posteado solo tiene [0]      
+                                                   x.types[0] === action.payload || //Si tengo dudas revisar la ruta
+                                                   x.types[1] === action.payload ) 
+            
+            console.log(filtro)
+           
                 
             return {
                 ...state,
-                pokemonsfiltrados: respuesta,
+                pokemonsfiltrados: filtro,
             }
 
         case "GET_ONLY_CREATE":
@@ -98,11 +92,6 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokemonsfiltrados: action.payload
             } 
-
-        //Me el formulario en el front para crear el pokemon y me actualice el state
-        //El problema que tengo ahora es que creo un poke de tipo electric y en el filtro de electric no me aparece
-
-        // case "CREATE_POKE_FRONT" ..
 
         case "POST_POKEMON":
             return {

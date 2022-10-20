@@ -73,28 +73,28 @@ function Home() {
                 </select>
 
                 <select onChange={(e) => handleStronger(e)} className="contenedor-filtros-fuerza" >
-                    <option value="all" > Strength </option>
+                    <option value="all" > Select By </option>
                     <option value="more"> Stronger </option>
                     <option value="less" > Weaker </option>
                 </select>
 
                 <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
-                    <option value="all" > Found By </option>
+                    <option value="all" > Select By </option>
                     <option value="us"> Create for us </option>
                     <option value="db"> Data Base </option>
                 </select>
 
                 <select onChange={(e) => { handleFilterType(e) }} className="contenedor-tipos">
-                    <option value="all" > Pokemon Type </option>
-                    <option value="grass" > Grass </option>
-                    <option value="fire" > Fire </option>
-                    <option value="water" > Water </option>
-                    <option value="bug" > Bug </option>
-                    <option value="normal" > Normal </option>
-                    <option value="poison" > Poison </option>
-                    <option value="electric" > Electric </option>
-                    <option value="ground" > Ground </option>
-                    <option value="fairy" > Fairy </option>
+                    <option value="all" > Select Type </option>
+                    <option value="grass" > grass </option>
+                    <option value="fire" > fire </option>
+                    <option value="water" > water </option>
+                    <option value="bug" > bug </option>
+                    <option value="normal" > normal </option>
+                    <option value="poison" > poison </option>
+                    <option value="electric" > electric </option>
+                    <option value="ground" > ground </option>
+                    <option value="fairy" > airy </option>
                 </select>
 
             </div>

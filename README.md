@@ -115,25 +115,26 @@ __Ruta principal__: debe contener
   - Imagen
   - Nombre
   - Tipos (Electrico, Fuego, Agua, etc)
-- [ ] Botones/Opciones para filtrar por tipo de pokemon y por pokemon existente o creado por nosotros  //X
+- [ ] Botones/Opciones para filtrar por tipo de pokemon y por pokemon existente o creado por nosotros  
 - [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los pokemons por orden alfabético y por ataque 
-- [ ] Paginado para ir buscando y mostrando los siguientes pokemons, 12 pokemons por pagina.
+- [ ] Paginado para ir buscando y mostrando los siguientes pokemons, 12 pokemons por pagina. //X 
 
 __IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto los pokemons traidos desde la API como así también las de la base de datos. Por otro lado, si revisan el endpoint que trae todos los pokemons verán que no muestra la información del pokemon sino una URL para hacer un subrequest y obtener los datos de allí. Tendrán que por cada pokemon que van a mostrar hacer otro request a esa URL para obtener su imagen y tipos. Debido a que esto puede hacer que la búsqueda sea muy lenta limitar el resultado total a 40 pokemons totales. //XX{}
 
-__Ruta de detalle de Pokemon__: debe contener
+__Ruta de detalle de Pokemon__: debe contener  //Esto despues de terminar la ruta de creacion
 
 - [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
 - [ ] Número de Pokemon (id)
 - [ ] Estadísticas (vida, ataque, defensa, velocidad)
 - [ ] Altura y peso
 
-__Ruta de creación__: debe contener
+__Ruta de creación__: debe contener   //X
 
 - [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
-- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon
+- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   //ojo
 - [ ] Botón/Opción para crear un nuevo Pokemon
 
+//OJO CON ESTO AL MOMENTO DE HACER EL FORMULARIO PARA CREAR
 > Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.
 
 ## Base de datos

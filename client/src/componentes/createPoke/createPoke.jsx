@@ -23,7 +23,8 @@ function CreatePoke() {  //Anotar como hacer para crear
         e.preventDefault()
         dispatch(postPokemon(inputs))
         alert("Pokemon creado CONAHTUMADRE  !!")
-        }
+        setInputs({name: "",hp: "",attack: "",defense: "",speed: "",height: "",weight: "",image: "",types:[] }) //blank again
+    }
 
     // useEffect(() => {  //De momento no es indispensable
     //     dispatch(getPokemonsBack())
@@ -83,15 +84,15 @@ function CreatePoke() {  //Anotar como hacer para crear
                     <h4>Type</h4>
                     <select onChange={(e) => handleChange(e)} value={inputs.types} name="types" >
                         <option> Type </option>
-                        <option> Grass </option>
-                        <option> Fire </option>
-                        <option> Water </option>
-                        <option> Bug </option>
-                        <option> Normal </option>
-                        <option> Poison </option>
-                        <option> Electric </option>
-                        <option> Ground </option>
-                        <option> Fairy </option>
+                        <option> grass </option>
+                        <option> fire </option>
+                        <option> water </option>
+                        <option> bug </option>
+                        <option> normal </option>
+                        <option> poison </option>
+                        <option> electric </option>
+                        <option> ground </option>
+                        <option> fairy </option>
                         
                     </select>
                 </div>
