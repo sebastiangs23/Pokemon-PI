@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate } from "../../store/actions/actionsPoke"
+import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate,getAllTypes, getAllTypesAgain } from "../../store/actions/actionsPoke"
 import SearchBar from "../searchBar/searchbar";
 import "./home.css"
 
@@ -94,7 +94,7 @@ function Home() {
                     <option value="poison" > poison </option>
                     <option value="electric" > electric </option>
                     <option value="ground" > ground </option>
-                    <option value="fairy" > airy </option>
+                    <option value="fairy" > fairy </option>
                 </select>
 
             </div>

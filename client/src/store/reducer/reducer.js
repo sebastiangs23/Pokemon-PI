@@ -95,6 +95,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 alltypes: action.payload
             }
+        
+        case "GET_TYPES_AGAIN":
+            return {
+                ...state,
+                alltypes: action.payload
+            }
 
         case "POST_POKEMON":
             return {

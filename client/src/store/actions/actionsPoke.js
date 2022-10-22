@@ -108,16 +108,26 @@ export function getAllTypes(){
             payload: types.data
         })
     }
-    
+}
+
+export function getAllTypesAgain(){
+    return async function(dispatch){
+        var types = await axios.get("http://localhost:3001/home/pokemons/types");
+        return dispatch({
+            type: "GET_TYPES_AGAIN",
+            payload: types.data
+        })
+    }
 }
 
 export function postPokemon(payload){
     return async function(dispatch){
         try{
             const upload = await axios.post("http://localhost:3001/home/pokemons", payload) //Sintaxis similar ala de postmanx
+            
             return upload 
         }catch(error){
-            console.log(error)
+            alert('Ya existe un pokemon con ese nombre')
         }
     }
     

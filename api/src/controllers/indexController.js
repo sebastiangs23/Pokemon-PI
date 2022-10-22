@@ -67,6 +67,24 @@ const getAllPokemons = async (req, res) => {
     }   
 }
 
+const getAllPokemonsBug = async (req, res) => {
+    try {
+        const allPokeApi = await getPokemonApi() //De la API
+        const allPokeDb = await Pokemon.findAll({ //De la Db
+            include: [{
+                model: Types,
+                attributes: ["name"]
+            }]
+        })
+        const fullPokemons = allPokeDb.concat(allPokeApi)
+        return fullPokemons
+
+    } catch (error) {
+        console.log(error)
+        res.status(400).send("Error al cargar todos los pokemones")
+    }   
+}
+
 const getPokemonsById = async (req, res) => {
 
     const { id } = req.params
@@ -161,28 +179,29 @@ const getPokemonByName = async (req, res) => {
 const createPokemonBd = async (req, res) => {
     try {
         const { name, types, hp, attack, defense, speed, height, weight, image } = req.body //pq aca te va estar llegando un array
-        const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image }) 
+        
 
-        // const nuevoType = await Types.create({ name: types }) //no es la manera correcta
+        let allPokes = await getAllPokemonsBug()
 
-        types.map(async (t) => {
-            const newType = await Types.findAll({ 
-              where: {
-                name: t,
-              },
-            })
-            nuevoPoke.addTypes(newType[0])
-          })
+        let seRepite = allPokes.filter((e) => e.name.toLowerCase() ===  name.toLowerCase())
 
+        if(seRepite.length){
+            res.status(400).send("El nombre del Pokemon ya existe")
+        }else{
 
-        // nuevoPoke.addTypes(nuevoType)
-        res.status(200).send("Pokemon creado con exito")
+            const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image }) 
 
-
-
+            types.map(async (t) => {
+                const newType = await Types.findAll({ 
+                  where: {name: t,},})
+                nuevoPoke.addTypes(newType[0])
+              })
+            res.status(200).send('Pokemon agregado de manera exitosa.') //pequeno bug
+        }
+        
     } catch (error) {
-        console.log(error)
-        res.status(400).send("Error al crear tu pokemon")
+        console.log('error al postear',error)
+        res.status(404).send("Error al agregar tu pokemon")
     }
 }
 

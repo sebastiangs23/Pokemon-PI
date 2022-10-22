@@ -2,7 +2,7 @@ import "./createPoke.css"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllTypes, postPokemon } from "../../store/actions/actionsPoke"
+import { getAllTypes,getAllTypesAgain, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
 
 
 
@@ -28,6 +28,14 @@ function CreatePoke() {  //Anotar como hacer para crear
     console.log(inputs.types)
   }
 
+  const handleDelete = (t,e) => {
+    e.preventDefault()
+    setInputs({
+      ...inputs,
+      types: inputs.types.filter((x) => x !== t )
+    });
+  }
+
   const handleSubmit = (e) => {  //Esto sera lo ultimo que aprende antes de que el pokemon se cree
     e.preventDefault()
     dispatch(postPokemon(inputs))
@@ -38,7 +46,9 @@ function CreatePoke() {  //Anotar como hacer para crear
 
 
   useEffect(() => {
+    dispatch(getPokemonsBackAgain())
     dispatch(getAllTypes())  //Para renderizar los tipos de pokemones
+    dispatch(getAllTypesAgain())
   }, [])
 
 
@@ -97,22 +107,20 @@ function CreatePoke() {  //Anotar como hacer para crear
           <h4>Type</h4>
           <select onChange={(e) => handleSelect(e)} name="types" > {/*Necesito mi estado global*/}
             {types.map((t) => (
-              <option value={t.name} > {t.name} </option>
-            ))}
-
-
+              <option value={t.name} > {t.name} </option>))}
           </select>
         </div>
 
+        <div className="contenedor-delete">
+          {inputs.types.map((t) =>(
+            <ul>
+              <button  className="button-x" onClick={(e)=> handleDelete(t,e) } > X </button>
+              <li>{t}</li>
+              
+            </ul>
+          ))}
+        </div>
 
-        {/* <div className="borrador" >  //primero tengo q resolver lo de arriba
-                  {inputs.types.map((c) => (
-                    <ul>
-                    <li>{c}</li>
-                    <button >x</button>
-                  </ul>
-                  ))} 
-                </div> */}
 
 
         <button type="submit" > Send </button>

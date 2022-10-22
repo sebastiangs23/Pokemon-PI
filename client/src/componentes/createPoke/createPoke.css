@@ -72,3 +72,27 @@
     padding: 5px;
     margin: 10px;
 }
+
+.contenedor-delete{
+    display: flex;
+    margin: 5px;
+    padding: 10px;
+    height: 40px;
+    width: 30px;
+    color: yellowgreen;
+}
+
+.contenedor-delete li{
+    margin-left: 25px;
+}
+
+.contenedor-delete button{
+    background-color: lightgreen;
+}
+
+.button-x{
+    max-width: 20px;
+    max-height: 70px;
+    font-family: bold;
+    color: black;
+}
