@@ -106,8 +106,11 @@ function Home() {
                         <div className="individual-cards">
                             <h2> {p.name} </h2>
 
-                            <h3> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <p>{cadauno}</p> })
-                                : <p> {p.types[0].name} </p>}</h3>{/*Solo me va renderizar el 1ero,posible error al momento de renderizar 2*/}
+                            <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
+                                : <div> {p.types.map((x) => {
+                                    return <h3> {x.name} </h3>})}
+                                </div>}
+                            </div>
 
                             <img src={p.image} />
                         </div>

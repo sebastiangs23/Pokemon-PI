@@ -1,4 +1,4 @@
-const initialState = { pokemons: [] , pokemonsfiltrados: []};   
+const initialState = { pokemons: [], pokemonsfiltrados: [], alltypes: [] };
 
 function filterAlphab(pokemons, payload) {
     let orden = pokemons;
@@ -68,30 +68,33 @@ const reducer = (state = initialState, action) => {
         case "GET_FILTER":  //Esto va dentro del useEffect y evita que el estado se setee por lo filtrado
             return {
                 ...state
-            }    
+            }
 
         case "FILTER_BY_TYPE":
-            const saveState = state.pokemons 
-
-
-            const filtro = saveState.filter((x) => x.types[0].name === action.payload || //El posteado solo tiene [0]      
-                                                   x.types[0] === action.payload || //Si tengo dudas revisar la ruta
-                                                   x.types[1] === action.payload ) 
+            const saveState = state.pokemons
             
-            console.log(filtro)
-           
-                
+            const typeFiltered =
+                action.payload === "all" ? saveState : saveState.filter((p) =>
+                    p.types.some((t) => t === action.payload || t.name === action.payload) //Pq si le damos directo habra algunas que nos
+                );                                                                         //den undefined
+
             return {
                 ...state,
-                pokemonsfiltrados: filtro,
+                pokemonsfiltrados: typeFiltered,
             }
 
         case "GET_ONLY_CREATE":
-            console.log(action.payload)           
+            console.log(action.payload)
             return {
                 ...state,
                 pokemonsfiltrados: action.payload
-            } 
+            }
+
+        case "GET_TYPES":
+            return {
+                ...state,
+                alltypes: action.payload
+            }
 
         case "POST_POKEMON":
             return {

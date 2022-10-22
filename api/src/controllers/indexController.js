@@ -160,11 +160,25 @@ const getPokemonByName = async (req, res) => {
 
 const createPokemonBd = async (req, res) => {
     try {
-        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
-        const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image })
-        const nuevoType = await Types.create({ name: types })
-        nuevoPoke.addTypes(nuevoType)
+        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body //pq aca te va estar llegando un array
+        const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image }) 
+
+        // const nuevoType = await Types.create({ name: types }) //no es la manera correcta
+
+        types.map(async (t) => {
+            const newType = await Types.findAll({ 
+              where: {
+                name: t,
+              },
+            })
+            nuevoPoke.addTypes(newType[0])
+          })
+
+
+        // nuevoPoke.addTypes(nuevoType)
         res.status(200).send("Pokemon creado con exito")
+
+
 
     } catch (error) {
         console.log(error)
@@ -175,9 +189,21 @@ const createPokemonBd = async (req, res) => {
 const getTypePokemon = async (req, res) => {  //Solo me trae los tipos de los 40 primeros
     const pokemones = await getPokemonApi();
     const allcontenedor = [];
-    pokemones.map(t => allcontenedor.push(t.types[0]))
+    
+    pokemones.map(t => allcontenedor.push((t.types[0] || t.types[1])))
     const noRepeat = [...new Set(allcontenedor)] //No repeat
-    res.status(200).send(noRepeat)
+    noRepeat.forEach((e) => {
+        Types.findOrCreate({
+            where:{
+                name: e
+            }
+        })
+    })
+
+    const alltypes = await Types.findAll()//
+
+
+    res.status(200).send(alltypes)
 
 }
 

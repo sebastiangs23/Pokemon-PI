@@ -121,7 +121,7 @@ __Ruta principal__: debe contener
 
 __IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto los pokemons traidos desde la API como así también las de la base de datos. Por otro lado, si revisan el endpoint que trae todos los pokemons verán que no muestra la información del pokemon sino una URL para hacer un subrequest y obtener los datos de allí. Tendrán que por cada pokemon que van a mostrar hacer otro request a esa URL para obtener su imagen y tipos. Debido a que esto puede hacer que la búsqueda sea muy lenta limitar el resultado total a 40 pokemons totales. //XX{}
 
-__Ruta de detalle de Pokemon__: debe contener  //Esto despues de terminar la ruta de creacion
+__Ruta de detalle de Pokemon__: debe contener  //tengo la ruta solo me falta renderizar el componente //after finish all the post
 
 - [ ] Los campos mostrados en la ruta principal para cada pokemon (imagen, nombre y tipos)
 - [ ] Número de Pokemon (id)
@@ -131,10 +131,10 @@ __Ruta de detalle de Pokemon__: debe contener  //Esto despues de terminar la rut
 __Ruta de creación__: debe contener   //X
 
 - [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
-- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   //ojo
+- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   //1 solo me falta esto
 - [ ] Botón/Opción para crear un nuevo Pokemon
 
-//OJO CON ESTO AL MOMENTO DE HACER EL FORMULARIO PARA CREAR
+//2 me falta esto 
 > Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.
 
 ## Base de datos
@@ -167,7 +167,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] __GET /pokemons__:
   - Obtener un listado de los pokemons desde pokeapi.
   - Debe devolver solo los datos necesarios para la ruta principal
-- [ ] __GET /pokemons/{idPokemon}__:
+- [ ] __GET /pokemons/{idPokemon}__: //tengo la ruta solo me falta el componente
   - Obtener el detalle de un pokemon en particular
   - Debe traer solo los datos pedidos en la ruta de detalle de pokemon
   - Tener en cuenta que tiene que funcionar tanto para un id de un pokemon existente en pokeapi o uno creado por ustedes
