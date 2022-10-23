@@ -137,3 +137,18 @@ export function postPokemon(payload){
 //Voy a necesitar una action que me traiga los detalles del pokemon el cual haya hecho click
 
 }
+
+export function getDetailsId(id){
+    return async function(dispatch){
+        try{
+            var rutaDetail = await axios.get(`http://localhost:3001/home/pokemons/codigo/${id}`);
+            return dispatch({
+                type : 'GET_DETAILS',
+                payload: rutaDetail.data
+            })
+        }catch(error){
+            console.log(error)
+        }
+        
+    }
+}

@@ -89,7 +89,7 @@ const getPokemonsById = async (req, res) => {
 
     const { id } = req.params
     try{
-        if (id.length > 3) {
+        if (id.length > 4) {
             let busquedaDb = await Pokemon.findByPk(id, { include: { model: Types } }) //En caso este en la DB
             let ordenarPokeDb = {
                 id: busquedaDb.id,
@@ -103,7 +103,9 @@ const getPokemonsById = async (req, res) => {
                 height: busquedaDb.height,
                 weight: busquedaDb.weight,
             }
-            res.send(ordenarPokeDb)
+            var wrap = []  //Lo necesito en un array por la fn que tengo al momento de renderizar los details
+            wrap.push(ordenarPokeDb)
+            res.send(wrap)
         } else {
             const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`) //En caso este en la API
     

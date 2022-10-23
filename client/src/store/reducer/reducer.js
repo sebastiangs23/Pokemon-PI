@@ -1,4 +1,4 @@
-const initialState = { pokemons: [], pokemonsfiltrados: [], alltypes: [] };
+const initialState = { pokemons: [], pokemonsfiltrados: [], alltypes: [], detail: []};
 
 function filterAlphab(pokemons, payload) {
     let orden = pokemons;
@@ -101,6 +101,13 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 alltypes: action.payload
             }
+
+        case 'GET_DETAILS':
+            console.log(action.payload)
+            return {
+                ...state,
+                detail: action.payload
+            }    
 
         case "POST_POKEMON":
             return {

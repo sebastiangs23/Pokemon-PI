@@ -128,10 +128,10 @@ __Ruta de detalle de Pokemon__: debe contener  //tengo la ruta solo me falta ren
 - [ ] Estadísticas (vida, ataque, defensa, velocidad)
 - [ ] Altura y peso
 
-__Ruta de creación__: debe contener   //X
+__Ruta de creación__: debe contener   
 
 - [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
-- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   //1 solo me falta esto
+- [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   
 - [ ] Botón/Opción para crear un nuevo Pokemon
 
 //2 me falta esto 
