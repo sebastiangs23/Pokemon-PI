@@ -107,7 +107,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 detail: action.payload
-            }    
+            }  
+        
+        case "EMPTY_RETURN":
+            return {
+                ...state,
+                detail: [] //hacer que se vacee de alguna manera
+            }
 
         case "POST_POKEMON":
             return {

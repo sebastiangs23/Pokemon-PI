@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailsId, getPokemonsBackAgain } from "../../store/actions/actionsPoke";
+import { getDetailsId, returnOfDetails } from "../../store/actions/actionsPoke";
 import './details.css'
 
 function Details() {
@@ -10,20 +10,22 @@ function Details() {
     let { id } = useParams();
 
     useEffect(() => {
-        dispatch(getPokemonsBackAgain())
         dispatch(getDetailsId(id))
+        dispatch(returnOfDetails())
     }, [dispatch, id])
 
     const pokemonDetalle  = useSelector((s) => s.detail)
 
-    
+    function handleClickReturn(e){
+        dispatch(returnOfDetails())
+    }
 
     return (
 
         <div >
             <div>
                 <Link to="/home">
-                    <button >Volver</button>
+                    <button onClick={(e) => {handleClickReturn(e)}} >Volver</button>
                 </Link>
                 {pokemonDetalle.map((p) => {
                     return (

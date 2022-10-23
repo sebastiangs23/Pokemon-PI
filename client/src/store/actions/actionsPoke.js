@@ -152,3 +152,9 @@ export function getDetailsId(id){
         
     }
 }
+
+export function returnOfDetails(){
+    return {
+        type: "EMPTY_RETURN"
+    }
+}

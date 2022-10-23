@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate,getAllTypes, getAllTypesAgain } from "../../store/actions/actionsPoke"
+import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate, getAllTypes, getAllTypesAgain } from "../../store/actions/actionsPoke"
 import SearchBar from "../searchBar/searchbar";
 import "./home.css"
 
@@ -11,8 +11,10 @@ function Home() {
     const dispatch = useDispatch();
     const [orden, setOrden] = useState([])
 
-    const saveState = useSelector(state => state.pokemonsfiltrados) //Ya no necesito el mapState pq con useSelector guardo el estado en una variable
+    const saveState = useSelector(state => state.pokemonsfiltrados) //Guardo el state en una variable
     // console.log(saveState)
+    //const pokemonDetalle  = useSelector((s) => s.detail)
+    
 
     useEffect(() => {
         dispatch(getPokemonsBack())
@@ -104,15 +106,20 @@ function Home() {
                 {saveState.map((p) => {
                     return (
                         <div className="individual-cards">
-                            <h2> {p.name} </h2>
+                            <Link to={`home/detail/${p.id}`} > 
+                                <h2> {p.name} </h2>
 
-                            <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
-                                : <div> {p.types.map((x) => {
-                                    return <h3> {x.name} </h3>})}
-                                </div>}
-                            </div>
+                                <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
+                                    : <div> {p.types.map((x) => {
+                                        return <h3> {x.name} </h3>
+                                    })}
+                                    </div>}
+                                </div>
 
-                            <img src={p.image} />
+                                <img src={p.image} />
+
+                            </Link>
+
                         </div>
                     )
                 })}
