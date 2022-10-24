@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate, getAllTypes, getAllTypesAgain } from "../../store/actions/actionsPoke"
 import SearchBar from "../searchBar/searchbar";
+import Paginado from "../paginado/paginado";
 import "./home.css"
 
 
@@ -13,8 +14,17 @@ function Home() {
 
     const saveState = useSelector(state => state.pokemonsfiltrados) //Guardo el state en una variable
     // console.log(saveState)
-    //const pokemonDetalle  = useSelector((s) => s.detail)
-    
+
+    //Paginado
+    const [currentPage, setCurrentPage] = useState(1); //Aprenderme esta mrd //Anotar
+    const [pokemonsXPage] = useState(12)
+    const lastPokemon = currentPage * pokemonsXPage;
+    const firtsPokemon = lastPokemon - pokemonsXPage;
+    let PokeRender = saveState.slice(firtsPokemon, lastPokemon);
+    const paginadoEstoy = (numberPage) => {
+        setCurrentPage(numberPage)}
+    //
+
 
     useEffect(() => {
         dispatch(getPokemonsBack())
@@ -103,10 +113,10 @@ function Home() {
 
 
             <div className="contenedor-cards">
-                {saveState.map((p) => {
+                {PokeRender.map((p) => { //La variable que permite traer solo 12 pokemons
                     return (
                         <div className="individual-cards">
-                            <Link to={`home/detail/${p.id}`} > 
+                            <Link to={`home/detail/${p.id}`} >
                                 <h2> {p.name} </h2>
 
                                 <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
@@ -125,11 +135,22 @@ function Home() {
                 })}
             </div>
 
+            <div  className="wrap-paginado">
+                <div>
+                    {saveState && (
+                        <Paginado
+                            pokemonsXPage={pokemonsXPage} //
+                            saveState={saveState.length}
+                            paginadoEstoy={paginadoEstoy} />
+                    )}
+                </div>
+            </div>
+
+
         </div>
     )
 }
 
 
 //Ya no necesito el mapState y mapStateToProps pq ahora mapeo el estado al componente mediante useSelector
-
 export default Home;

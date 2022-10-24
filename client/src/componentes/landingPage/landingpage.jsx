@@ -11,6 +11,8 @@ function LandingPage() {
 
             <h1> Landing Page </h1>
 
+            <l> Aca ira una historia resumida de pokemon </l>
+
             <Link to="/home">
                 <button > Ingresar </button>
             </Link>
