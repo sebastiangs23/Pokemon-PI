@@ -14,18 +14,18 @@ function Details() {
         dispatch(returnOfDetails())
     }, [dispatch, id])
 
-    const pokemonDetalle  = useSelector((s) => s.detail)
+    const pokemonDetalle = useSelector((s) => s.detail)
 
-    function handleClickReturn(e){
+    function handleClickReturn(e) {
         dispatch(returnOfDetails())
     }
 
     return (
 
         <div >
-            <div>
+            <div className="wrap-all" >
                 <Link to="/home">
-                    <button onClick={(e) => {handleClickReturn(e)}} >Volver</button>
+                    <button onClick={(e) => { handleClickReturn(e) }} >Volver</button>
                 </Link>
                 {pokemonDetalle.map((p) => {
                     return (
@@ -34,20 +34,21 @@ function Details() {
 
                             <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
                                 : <div> {p.types.map((x) => {
-                                    return <h3> {x.name} </h3>})}
+                                    return <h3> {x.name} </h3>
+                                })}
                                 </div>}
                             </div>
 
-                            <img src={p.image} />
-                            
-                            <h3> ID: </h3> <h4> {p.id} </h4>
-                            <h3> Hp: </h3> <h4> {p.hp} </h4>
-                            <h3> Attack: </h3> <h4> {p.attack} </h4>
-                            <h3> Defense: </h3> <h4> {p.defense} </h4>
-                            <h3> Speed: </h3> <h4> {p.speed} </h4>
-                            <h3> Height: </h3> <h4> {p.height} </h4>
-                            <h3> Weight: </h3> <h4> {p.weight} </h4>
-
+                            <img src={p.image} className="imagen-detalle"/>
+                            <div className="wrap-letters" >
+                                <h3> ID: </h3> <h4> {p.id} </h4>
+                                <h3> Hp: </h3> <h4> {p.hp} </h4>
+                                <h3> Attack: </h3> <h4> {p.attack} </h4>
+                                <h3> Defense: </h3> <h4> {p.defense} </h4>
+                                <h3> Speed: </h3> <h4> {p.speed} </h4>
+                                <h3> Height: </h3> <h4> {p.height} </h4>
+                                <h3> Weight: </h3> <h4> {p.weight} </h4>
+                            </div>
 
                         </div>
                     )

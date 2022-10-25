@@ -12,7 +12,7 @@ function CreatePoke() {  //Anotar como hacer para crear
 
   const [inputs, setInputs] = useState({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] })
 
-  const handleChange = (e) => {
+  const handleChange = (e) => { //i dont need it
     console.log(e.target.value)
 
     setInputs({
@@ -28,12 +28,12 @@ function CreatePoke() {  //Anotar como hacer para crear
     const some = value.length > 0
     const minValue = value.length > 2;
     const maxValue = value.length < 14;
-    const onlyLetras = /^[a-zA-Z\s]*$/g.test(value);
+    const onlyLetras = /^[a-zA-Z\s]*$/g.test(value); //X
 
-    //Posibles Errores                              //Osea el estado tiene que inicializarce en 1
-    if (some == false) {//Cuando haya algo         //Crear un estado padre donde todos los estados hijos tengan que cumplirse
+    //Posibles Errores                              
+    if (some == false) {//Cuando haya algo         
       setNumberError(1)
-    } else if (onlyLetras == false) {
+    } else if (onlyLetras == false) { //X
       setNumberError(2)
     } else if (!minValue) {
       setNumberError(3)
@@ -225,12 +225,6 @@ function CreatePoke() {  //Anotar como hacer para crear
   }
 
 
-  //todo rellenado
-  const [botonActivo, setBotonActivo] = useState(false)  //Al parecer no lo necesitare
-
-
-
-
 
   function handleSelect(e) {
     setInputs({
@@ -253,7 +247,7 @@ function CreatePoke() {  //Anotar como hacer para crear
   const handleSubmit = (e) => {  //Esto sera lo ultimo que aprende antes de que el pokemon se cree
     e.preventDefault()
     dispatch(postPokemon(inputs))
-    // alert("Pokemon creado correctamente !!!")
+    alert("Pokemon creado correctamente !!!")
     setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank again
   }
 
@@ -421,14 +415,14 @@ function CreatePoke() {  //Anotar como hacer para crear
           {inputs.types.map((t) => (
             <ul>
               <button className="button-x" onClick={(e) => handleDelete(t, e)} > X </button>
-              <li>{t}</li>
+              <p className="button-x-type" >{t}</p>
 
             </ul>
           ))}
         </div>
 
 
-        { /*  {!botonActivo} (disable = true para que nose pueda clickear)  */}
+       
         <button disabled={numberError > 0 || speedError > 0 || heightError > 0 ||
           weightError > 0 || hptError > 0 || attacktError > 0 || defensetError > 0 || imagetError > 0 } className="button-send" type="submit" >
           Send

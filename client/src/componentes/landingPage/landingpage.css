@@ -5,8 +5,10 @@
 
 
 .contenedor-landing {
-    height: 100%;
-    width: 100%;
+    height: 750px;
+    width: 1520px;
+    display: inline-block;
+    overflow: hidden;
     background: url("https://jesusmaceira.com/wp-content/uploads/2019/04/gradiente-colores-analogos.png");
     background-repeat: no-repeat;
     background-position: center center;
@@ -15,6 +17,12 @@
 
 }
 
+.historia{
+    width: 500px;
+    min-height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .block-top {
     width: 100%;
@@ -41,4 +49,8 @@
     padding: 5px;
     font-size: 28px;
     border-radius: 10px;
+}
+
+.image-landing{
+    height: 400px;
 }

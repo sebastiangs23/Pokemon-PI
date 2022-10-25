@@ -128,14 +128,14 @@ __Ruta de detalle de Pokemon__: debe contener   //DONE
 - [ ] Estadísticas (vida, ataque, defensa, velocidad)
 - [ ] Altura y peso
 
-__Ruta de creación__: debe contener   //miss
+__Ruta de creación__: debe contener   //DONE
 
 - [ ] Un formulario __controlado con JavaScript__ con los campos mencionados en el detalle del Pokemon
 - [ ] Posibilidad de seleccionar/agregar más de un tipo de Pokemon   
 - [ ] Botón/Opción para crear un nuevo Pokemon
 
-//XX 
-> Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.
+//DONE
+> Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre del Pokemon no pueda contener caracteres numéricos, que la altura no pueda ser superior a determinado valor, etc.    
 
 
 ## Base de datos 

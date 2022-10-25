@@ -1,4 +1,5 @@
 import React from "react"
+import "./paginado.css"
 
 function Paginado({ pokemonsXPage, saveState, paginadoEstoy }) {  //props
     const pageNumber = []; //El numero total de paginas
@@ -8,10 +9,10 @@ function Paginado({ pokemonsXPage, saveState, paginadoEstoy }) {  //props
     }
 
     return (
-        <nav>
-            <div >
+        <nav className="wrap-paginado" >
+            <div className="border-paginado">
                 {pageNumber.map((n) => (
-                        <button onClick={() => paginadoEstoy(n)}>
+                        <button  className="botones-pag-individuales" onClick={() => paginadoEstoy(n) }>
                             {n}
                         </button>
                     ))}

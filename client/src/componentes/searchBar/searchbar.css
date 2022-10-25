@@ -6,6 +6,10 @@
     top: 0px;
 }
 
+.contenedor-searchbar button {
+    cursor: pointer;
+}
+
 .contenedor-input-boton{
     margin: 5px;
 }

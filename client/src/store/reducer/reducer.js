@@ -75,8 +75,8 @@ const reducer = (state = initialState, action) => {
             
             const typeFiltered =
                 action.payload === "all" ? saveState : saveState.filter((p) =>
-                    p.types.some((t) => t === action.payload || t.name === action.payload) //Pq si le damos directo habra algunas que nos
-                );                                                                         //den undefined
+                    p.types.some((t) => t === action.payload || t.name === action.payload) 
+                );                                                                         
 
             return {
                 ...state,

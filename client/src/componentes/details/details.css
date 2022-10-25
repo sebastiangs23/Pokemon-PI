@@ -1,15 +1,45 @@
-.contenedor-card-details{
-    height: 500px;
+.wrap-all{
+    height: 740px;
+    min-width: 1200px;
+    
 }
 
 
-.wrap-card-detail{
+.wrap-card-detail {
+    
+    padding: 10px;
+    min-width: 800px;
+    max-height: 550px;
+    display: flex;
+    border: 2px solid black;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: black;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    transition: all 400ms ease;
+    color: aqua;
+    text-decoration: none;
+    border-radius: 20px;
 
-    height: 500px;
-    width: 500px;
-    border: 5px solid black;
+
 }
 
-.wrap-card-detail h3{
+.wrap-card-detail:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3%);
+}
+
+.wrap-card-detail h3 {
     color: white;
+}
+
+.imagen-detalle{
+    min-height: 300px;
+    max-width: 400px;
+}
+
+.wrap-letters{
+
 }

@@ -1,40 +1,49 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.contenedor-componente{
+
+
+.contenedor-componente {
     display: inline-block;
-    width: 1200px;
+    height: 755px;
+    width: 1520px;
     overflow: hidden;
+    background: url("https://static.vecteezy.com/system/resources/previews/004/877/543/large_2x/blue-dramatic-sunset-sky-texture-background-free-photo.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
-.contenedor-form-createpokemon{
+.contenedor-form-createpokemon {
     width: 600px;
     height: 570px;
     margin-top: 35px;
+    margin-left: 20px;
     float: left;
-    border: 2px solid #35E7CE ;
+    border: 2px solid #35E7CE;
     border-radius: 50px;
-    box-shadow: 0 0 20px  0 #83F3F7;
+    box-shadow: 0 0 20px 0 #83F3F7;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.form-error-name{
-    color: red;
+.form-error-name {
+    color:crimson;
 }
 
 
-.contenedor-componente h1{
+.contenedor-componente h1 {
     color: white;
-    font-size: 40px ;
-    
+    font-size: 40px;
+
 }
 
 
 
-.button-send{
+.button-send {
     cursor: pointer;
     background-color: #82C5C7;
     border-radius: 50px;
@@ -46,36 +55,36 @@
     grid-column: 1/3;
 }
 
-.button-send:disabled{
+.button-send:disabled {
     opacity: 0.2;
     cursor: not-allowed;
 }
 
 
-.contenedor-componente h4{
+.contenedor-componente h4 {
     color: white;
     margin-top: 17px;
     margin-left: 10px;
 }
 
-.contenedor-componente input{
+.contenedor-componente input {
     background-color: #E6E6E6;
     color: black;
     border-radius: 10px;
-    margin-left: 20px; 
+    margin-left: 20px;
 }
 
-.contenedor-rellenar{
+.contenedor-rellenar {
     width: 300px;
     height: 95px;
 }
 
-.imagen-component-create{
+.imagen-component-create {
     display: inline-block;
     max-width: 550px;
 }
 
-.boton-back{
+.boton-back {
     cursor: pointer;
     font-size: 20px;
     height: 40px;
@@ -83,7 +92,7 @@
     margin: 10px;
 }
 
-.contenedor-delete{
+.contenedor-delete {
     display: flex;
     margin: 5px;
     padding: 10px;
@@ -92,18 +101,23 @@
     color: yellowgreen;
 }
 
-.contenedor-delete li{
+.button-x-type{
     margin-left: 25px;
+    border: 2px solid white;
+    background-color: black;
+    font-weight: bold;
 }
 
-.contenedor-delete button{
-    background-color: lightgreen;
+
+
+.contenedor-delete button {
+    background-color: crimson;
+    cursor: pointer;
 }
 
-.button-x{
+.button-x {
     max-width: 20px;
     max-height: 70px;
     font-family: bold;
     color: black;
 }
-
