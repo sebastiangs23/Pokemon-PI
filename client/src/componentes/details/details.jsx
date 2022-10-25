@@ -41,6 +41,7 @@ function Details() {
                             <img src={p.image} />
                             
                             <h3> ID: </h3> <h4> {p.id} </h4>
+                            <h3> Hp: </h3> <h4> {p.hp} </h4>
                             <h3> Attack: </h3> <h4> {p.attack} </h4>
                             <h3> Defense: </h3> <h4> {p.defense} </h4>
                             <h3> Speed: </h3> <h4> {p.speed} </h4>

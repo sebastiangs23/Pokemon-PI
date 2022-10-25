@@ -222,10 +222,7 @@ const getTypePokemon = async (req, res) => {  //Solo me trae los tipos de los 40
     })
 
     const alltypes = await Types.findAll()//
-
-
     res.status(200).send(alltypes)
-
 }
 
 const getPokemonsCratedByMyself = async(req,res) => {

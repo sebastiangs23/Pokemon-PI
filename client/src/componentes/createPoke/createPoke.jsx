@@ -2,7 +2,7 @@ import "./createPoke.css"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllTypes,getAllTypesAgain, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
+import { getAllTypes, getAllTypesAgain, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
 
 
 
@@ -14,11 +14,223 @@ function CreatePoke() {  //Anotar como hacer para crear
 
   const handleChange = (e) => {
     console.log(e.target.value)
+
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
+
+  //validacion de names
+  const [numberError, setNumberError] = useState(1)
+  const handleChangeName = (e) => { //
+    const value = e.target.value
+    const some = value.length > 0
+    const minValue = value.length > 2;
+    const maxValue = value.length < 14;
+    const onlyLetras = /^[a-zA-Z\s]*$/g.test(value);
+
+    //Posibles Errores                              //Osea el estado tiene que inicializarce en 1
+    if (some == false) {//Cuando haya algo         //Crear un estado padre donde todos los estados hijos tengan que cumplirse
+      setNumberError(1)
+    } else if (onlyLetras == false) {
+      setNumberError(2)
+    } else if (!minValue) {
+      setNumberError(3)
+    } else {
+      setNumberError(4)
+    }
+
+    if (onlyLetras == true && minValue && maxValue && some) {  //Cuando va bien 
+      setNumberError(0)
+    }
+
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  //validacion speed
+  const [speedError, setSpeedError] = useState(1)
+  const handleChangeSpeed = (e) => {
+    const valueSpeed = e.target.value
+    const some = valueSpeed.length > 0
+    const minValueS = valueSpeed > 10;
+    const maxValueS = valueSpeed < 250;
+
+    if (some == false) {
+      setSpeedError(1)
+    } else if (!minValueS) {
+      setSpeedError(2)
+    } else {
+      setSpeedError(3)
+    }
+
+    if (minValueS == true && maxValueS && some) {  //Cuando va bien
+      setSpeedError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  //validacion de altura
+  const [heightError, setHeightError] = useState(1)
+  const handleChangeHeight = (e) => {
+    const valueHeight = e.target.value;
+    const some = valueHeight.length > 0
+    const minHeight = valueHeight > 2
+    const maxHeight = valueHeight < 25
+
+    if (some == false) {
+      setHeightError(1)
+    } else if (!minHeight) {
+      setHeightError(2)
+    } else {
+      setHeightError(3)
+    }
+
+    if (minHeight == true && maxHeight && some) {  //Cuando va bien
+      setHeightError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  //validaciones de peso
+  const [weightError, setWeightError] = useState(1) //1
+  const handleChangeWeight = (e) => {
+    const valueWeight = e.target.value;
+    const some = valueWeight.length > 0
+    const minWeight = valueWeight > 10
+    const maxWeight = valueWeight < 2500
+
+    if (some == false) {
+      setWeightError(1)
+    } else if (!minWeight) {
+      setWeightError(2)
+    } else {
+      setWeightError(3)
+    }
+
+    if (minWeight == true && maxWeight && some) {  //Cuando va bien
+      setWeightError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [hptError, sethpError] = useState(1) //1
+  const handleChangeHp = (e) => {
+    const valueHp = e.target.value;
+    const some = valueHp.length > 0;
+    const minHp = valueHp > 5
+
+    if (some == false) {
+      sethpError(1)
+    } else {
+      sethpError(2)
+    }
+
+    if (minHp == true && some) {  //Cuando va bien
+      sethpError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [attacktError, setAttackError] = useState(1) //1
+  const handleChangeAttack = (e) => {
+    const valueAttack = e.target.value;
+    const some = valueAttack.length > 0;
+    const minAttack = valueAttack > 10
+
+    if (some == false) {
+      setAttackError(1)
+    } else {
+      setAttackError(2)
+    }
+
+    if (minAttack == true && some) {  //Cuando va bien
+      setAttackError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [defensetError, setDefenseError] = useState(1) //1
+  const handleChangeDefense = (e) => {
+    const valueDefense = e.target.value;
+    const some = valueDefense.length > 0;
+    const minDefense = valueDefense > 10
+
+    if (some == false) {
+      setDefenseError(1)
+    } else {
+      setDefenseError(2)
+    }
+
+    if (minDefense == true && some) {  //Cuando va bien
+      setDefenseError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const [imagetError, setImageError] = useState(1) //1
+  const handleChangeImage = (e) => {
+    const valueImage = e.target.value;
+    const some = valueImage.length > 0;
+    const minImage = valueImage.length > 10
+
+    if (some == false) {
+      setImageError(1)
+    } else {
+      setImageError(2)
+    }
+
+    if (minImage == true && some) {  //Cuando va bien
+      setImageError(0)
+    }
+
+    console.log(e.target.value)
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value
+    })
+  }
+
+
+  //todo rellenado
+  const [botonActivo, setBotonActivo] = useState(false)  //Al parecer no lo necesitare
+
+
+
+
 
   function handleSelect(e) {
     setInputs({
@@ -28,18 +240,20 @@ function CreatePoke() {  //Anotar como hacer para crear
     console.log(inputs.types)
   }
 
-  const handleDelete = (t,e) => {
+  const handleDelete = (t, e) => {
     e.preventDefault()
     setInputs({
       ...inputs,
-      types: inputs.types.filter((x) => x !== t )
+      types: inputs.types.filter((x) => x !== t)
     });
   }
+
+
 
   const handleSubmit = (e) => {  //Esto sera lo ultimo que aprende antes de que el pokemon se cree
     e.preventDefault()
     dispatch(postPokemon(inputs))
-    alert("Pokemon creado correctamente !!!")
+    // alert("Pokemon creado correctamente !!!")
     setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank again
   }
 
@@ -63,45 +277,137 @@ function CreatePoke() {  //Anotar como hacer para crear
       </Link>
 
       <form onSubmit={(e) => handleSubmit(e)} className="contenedor-form-createpokemon" >
-        <div className="contenedor-rellenar">
+        <label className="contenedor-rellenar">
           <h4>Nombre</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.name} name="name" />
-        </div>
+          <input onChange={(e) => handleChangeName(e)} value={inputs.name} name="name" type="text" required="" />
+          {(numberError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
 
-        <div className="contenedor-rellenar">
+          {(numberError == 2) && (
+            <p className="form-error-name" > Solo puedes introducir letras. </p>
+          )}
+
+          {(numberError == 3) && (
+            <p className="form-error-name" > El nombre minimo es de 3 caracteres. </p>
+          )}
+
+          {(numberError == 4) && (
+            <p className="form-error-name" > El nombre maximo es de 13 caracteres. </p>
+          )}
+
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Hp</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.hp} name="hp" />
-        </div>
+          <input onChange={(e) => handleChangeHp(e)} value={inputs.hp} name="hp" type="number" required="" />
 
-        <div className="contenedor-rellenar">
+          {(hptError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(hptError == 2) && (
+            <p className="form-error-name" > El hp minimo debe ser mayor a 5 </p>
+          )}
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Attack</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.attack} name="attack" />
-        </div>
+          <input onChange={(e) => handleChangeAttack(e)} value={inputs.attack} name="attack" type="number" required="" />
 
-        <div className="contenedor-rellenar">
+          {(attacktError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(attacktError == 2) && (
+            <p className="form-error-name" > El attack minimo debe ser mayor a 10 </p>
+          )}
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Defense</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.defense} name="defense" />
-        </div>
+          <input onChange={(e) => handleChangeDefense(e)} value={inputs.defense} name="defense" type="number" required="" />
 
-        <div className="contenedor-rellenar">
+          {(defensetError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(defensetError == 2) && (
+            <p className="form-error-name" > La defensa minima debe ser mayor a 10 </p>
+          )}
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Speed</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.speed} name="speed" />
-        </div>
+          <input onChange={(e) => handleChangeSpeed(e)} value={inputs.speed} name="speed" type="number" required="" />
 
-        <div className="contenedor-rellenar">
+          {(speedError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(speedError == 2) && (
+            <p className="form-error-name" > La minima velocidad debe ser mayor a 10 </p>
+          )}
+
+          {(speedError == 3) && (
+            <p className="form-error-name" > La maxima velocidad debe ser menor a 250 </p>
+          )}
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Height</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.height} name="height" />
-        </div>
+          <input onChange={(e) => handleChangeHeight(e)} value={inputs.height} name="height" type="number" required="" />
 
-        <div className="contenedor-rellenar"> 
+          {(heightError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(heightError == 2) && (
+            <p className="form-error-name" > La altura minima debe ser mayor a 2 </p>
+          )}
+
+          {(heightError == 3) && (
+            <p className="form-error-name" > La altura max debe ser menor a 25 </p>
+          )}
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Weight</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.weight} name="weight" />
-        </div>
+          <input onChange={(e) => handleChangeWeight(e)} value={inputs.weight} name="weight" type="number" required="" />
 
-        <div className="contenedor-rellenar">
+          {(weightError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(weightError == 2) && (
+            <p className="form-error-name" > El peso min debe ser mayor a 10 </p>
+          )}
+
+          {(weightError == 3) && (
+            <p className="form-error-name" > El peso max debe ser menor a 2500 </p>
+          )}
+
+
+        </label>
+
+        <label className="contenedor-rellenar">
           <h4>Image</h4>
-          <input onChange={(e) => handleChange(e)} value={inputs.image} name="image" />
-        </div>
+          <input onChange={(e) => handleChangeImage(e)} value={inputs.image} name="image" type="text" required="" />
+
+          {(imagetError == 1) && (
+            <p className="form-error-name" > Completar campo. </p>
+          )}
+
+          {(imagetError == 2) && (
+            <p className="form-error-name" > La URL debe tener mas de 10 caracteres  </p>
+          )}
+
+        </label>
 
         <div className="contenedor-rellenar">
           <h4>Type</h4>
@@ -112,18 +418,21 @@ function CreatePoke() {  //Anotar como hacer para crear
         </div>
 
         <div className="contenedor-delete">
-          {inputs.types.map((t) =>(
+          {inputs.types.map((t) => (
             <ul>
-              <button  className="button-x" onClick={(e)=> handleDelete(t,e) } > X </button>
+              <button className="button-x" onClick={(e) => handleDelete(t, e)} > X </button>
               <li>{t}</li>
-              
+
             </ul>
           ))}
         </div>
 
 
-
-        <button type="submit" > Send </button>
+        { /*  {!botonActivo} (disable = true para que nose pueda clickear)  */}
+        <button disabled={numberError > 0 || speedError > 0 || heightError > 0 ||
+          weightError > 0 || hptError > 0 || attacktError > 0 || defensetError > 0 || imagetError > 0 } className="button-send" type="submit" >
+          Send
+        </button>
 
       </form>
 
