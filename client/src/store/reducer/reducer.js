@@ -2,7 +2,7 @@ const initialState = { pokemons: [], pokemonsfiltrados: [], alltypes: [], detail
 
 function filterAlphab(pokemons, payload) {
     let orden = pokemons;
-    const ordenAZ = payload === "asc" ? orden.sort(function (a, b) {  //ordenAZ no es indispensable
+    const ordenAZ = payload === "asc" ? orden.sort(function (a, b) {  
         if (a.name > b.name) return 1; //de menor a mayor
         if (b.name > a.name) return -1;
         return 0;
@@ -28,7 +28,7 @@ function filterStrongest(pokemons, payload) {
     return moreless
 }
 
-//REPASAR ESTA MIERDA Y REVISAR 
+ 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case "GET_POKEMONS":
@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
                 pokemonsfiltrados: action.payload
 
             }
-        case "GET_POKEMONS_AGAIN": //Para volver a cargar todo
+        case "GET_POKEMONS_AGAIN":
             console.log(action.payload)
             return {
                 ...state,

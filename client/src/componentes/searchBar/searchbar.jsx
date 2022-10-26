@@ -22,7 +22,7 @@ function SearchBar() {
     return (
         <div className="contenedor-searchbar">
             <form>  
-                <input onChange={handleChange} value={buscar} placeholder="Inserte una busqueda" /> {/*learn sintax onchange onclick */}
+                <input onChange={handleChange} value={buscar} placeholder="Inserte una busqueda" className="input-searchbar" />
                 <button onClick={(c) => handleSubmit(c)} type="submit" > Aceptar </button>
             </form>
         </div>

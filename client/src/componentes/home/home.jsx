@@ -6,9 +6,6 @@ import SearchBar from "../searchBar/searchbar";
 import Paginado from "../paginado/paginado";
 import "./home.css"
 
-
-
-
 function Home() {
     const dispatch = useDispatch();
     const [orden, setOrden] = useState([])
@@ -27,10 +24,6 @@ function Home() {
         setCurrentPage(numberPage)
     }
 
-
-
-
-
     useEffect(() => {
         dispatch(getPokemonsBack())
         dispatch(getPokemonsBackAgain())
@@ -45,19 +38,19 @@ function Home() {
         dispatch(getPokemonsBackAgain())
     }
 
-    function handleSortName(e) { // Filtro 1
+    function handleSortName(e) {
         e.preventDefault();
         dispatch(getPokemonsAlphabetic(e.target.value))
         setOrden(e.target.value)
     }
 
-    function handleStronger(e) {  // Filtro 2
+    function handleStronger(e) {
         e.preventDefault()
         dispatch(getPokemonAtack(e.target.value))
         setOrden(e.target.value)
     }
 
-    function handleFilterType(e) {  //Filtro 3
+    function handleFilterType(e) {
         e.preventDefault();
         dispatch(getPokemonType(e.target.value));
     }
@@ -68,26 +61,21 @@ function Home() {
     }
 
 
-
-
     return (
         <div className="all-conteiner">
-
 
             <header>
                 <SearchBar /> {/* Como esta dentro del componente Home se le mapea el estado */}
             </header>
 
-
-
             <div className="contenedor-create-volver" >
                 <div className="wrap-back-button">
-                    <button className="back-button" onClick={e => { handleClick(e) }}> Volver a cargar </button>
+                    <button className="back-button" onClick={e => { handleClick(e) }}>  Volver a cargar   </button>
                 </div>
 
                 <div className="wrap-link" >
                     <Link to="/home/create"  >
-                        <button className="button-create" > + Create </button>
+                        <button className="button-create" > <span> + Create  </span> </button>
                     </Link>
 
                 </div>
@@ -117,7 +105,7 @@ function Home() {
                     <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
                         <option value="all" > Select By </option>
                         <option value="us"> Create for us </option>
-                        <option value="db"> Data Base </option>
+                        <option value="db"> Existente </option>
                     </select>
                 </div>
 
@@ -184,5 +172,5 @@ function Home() {
 }
 
 
-//Ya no necesito el mapState y mapStateToProps pq ahora mapeo el estado al componente mediante useSelector
+//antes usaba mapstate y mapstatetoprops, ahora uso useSelector
 export default Home;

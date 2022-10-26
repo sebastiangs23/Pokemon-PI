@@ -1,5 +1,3 @@
-//Aca iran las fn que me traeran las datos de la API y luego lo imporare en routes
-
 const { Pokemon, Types } = require("../db")
 const axios = require("axios")
 const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon"
@@ -180,15 +178,16 @@ const getPokemonByName = async (req, res) => {
 
 const createPokemonBd = async (req, res) => {
     try {
-        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body //pq aca te va estar llegando un array
+        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body 
         
-
         let allPokes = await getAllPokemonsBug()
 
         let seRepite = allPokes.filter((e) => e.name.toLowerCase() ===  name.toLowerCase())
 
         if(seRepite.length){
             res.status(400).send("El nombre del Pokemon ya existe")
+        }else if(types.length <= 0){
+            res.status(400).send("Olvidaste escoger un tipo de pokemon")
         }else{
 
             const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image }) 
@@ -238,12 +237,6 @@ const getPokemonsCratedByMyself = async(req,res) => {
         console.log(error)
     }
 }
-
-
-
-
-
-
 
 
 module.exports = { getPokemonApi,getPokemonApiSend, getAllPokemons, getPokemonByName, getTypePokemon, getPokemonsById,getPokemonsCratedByMyself, createPokemonBd }

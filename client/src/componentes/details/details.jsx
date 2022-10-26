@@ -24,35 +24,54 @@ function Details() {
 
         <div >
             <div className="wrap-all" >
-                <Link to="/home">
-                    <button onClick={(e) => { handleClickReturn(e) }} >Volver</button>
-                </Link>
+
                 {pokemonDetalle.map((p) => {
                     return (
                         <div className="wrap-card-detail">
-                            <h2> {p.name} </h2>
 
-                            <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
-                                : <div> {p.types.map((x) => {
-                                    return <h3> {x.name} </h3>
-                                })}
-                                </div>}
+                            <div className="name-types" >
+                                <h2> {p.name} </h2>
+
+                                <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
+                                    : <div> {p.types.map((x) => {
+                                        return <h3> {x.name} </h3>
+                                    })}
+                                    </div>}
+                                </div>
                             </div>
 
-                            <img src={p.image} className="imagen-detalle"/>
+
+                            <img src={p.image} className="imagen-detalle" />
                             <div className="wrap-letters" >
-                                <h3> ID: </h3> <h4> {p.id} </h4>
-                                <h3> Hp: </h3> <h4> {p.hp} </h4>
-                                <h3> Attack: </h3> <h4> {p.attack} </h4>
-                                <h3> Defense: </h3> <h4> {p.defense} </h4>
-                                <h3> Speed: </h3> <h4> {p.speed} </h4>
-                                <h3> Height: </h3> <h4> {p.height} </h4>
-                                <h3> Weight: </h3> <h4> {p.weight} </h4>
+
+                                <div className="primera-fila" >
+                                    <h3> Hp: </h3> <h4> {p.hp} </h4>
+                                    <h3> Attack: </h3> <h4> {p.attack} </h4>
+                                </div>
+
+                                <div className="segunda-fila" >
+                                    <h3> Defense: </h3> <h4> {p.defense} </h4>
+                                    <h3> Speed: </h3> <h4> {p.speed} </h4>
+                                </div>
+
+                                <div className="tercera-fila" >
+                                    <h3> Height: </h3> <h4> {p.height} </h4>
+                                    <h3> Weight: </h3> <h4> {p.weight} </h4>
+                                    <h3> ID: </h3> <h4> {p.id} </h4>
+                                </div>
+
+
+
+
                             </div>
 
                         </div>
                     )
                 })}
+
+                <Link to="/home">
+                    <button onClick={(e) => { handleClickReturn(e) }} className="button-details-back" > <span> Volver </span> </button>
+                </Link>
             </div>
         </div>
     );

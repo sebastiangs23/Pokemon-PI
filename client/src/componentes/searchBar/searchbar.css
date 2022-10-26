@@ -8,8 +8,15 @@
 
 .contenedor-searchbar button {
     cursor: pointer;
+    margin-left: 10px;
 }
+
 
 .contenedor-input-boton{
     margin: 5px;
+}
+
+.input-searchbar{
+    font-size: 20px;
+    margin-top: 8px;
 }

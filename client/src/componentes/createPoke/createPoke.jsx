@@ -94,7 +94,7 @@ function CreatePoke() {  //Anotar como hacer para crear
       setHeightError(3)
     }
 
-    if (minHeight == true && maxHeight && some) {  //Cuando va bien
+    if (minHeight == true && maxHeight && some) {  
       setHeightError(0)
     }
 
@@ -247,7 +247,6 @@ function CreatePoke() {  //Anotar como hacer para crear
   const handleSubmit = (e) => {  //Esto sera lo ultimo que aprende antes de que el pokemon se cree
     e.preventDefault()
     dispatch(postPokemon(inputs))
-    alert("Pokemon creado correctamente !!!")
     setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank again
   }
 
@@ -267,7 +266,7 @@ function CreatePoke() {  //Anotar como hacer para crear
       <h1> Create Pokemon  </h1>
 
       <Link to="/home">
-        <button className="boton-back"> Back </button>
+        <button className="boton-back"> <span> Back </span> </button>
       </Link>
 
       <form onSubmit={(e) => handleSubmit(e)} className="contenedor-form-createpokemon" >

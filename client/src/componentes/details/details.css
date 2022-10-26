@@ -1,12 +1,10 @@
-.wrap-all{
+.wrap-all {
     height: 740px;
     min-width: 1200px;
-    
 }
 
 
 .wrap-card-detail {
-    
     padding: 10px;
     min-width: 800px;
     max-height: 550px;
@@ -22,8 +20,6 @@
     color: aqua;
     text-decoration: none;
     border-radius: 20px;
-
-
 }
 
 .wrap-card-detail:hover {
@@ -31,15 +27,91 @@
     transform: translateY(-3%);
 }
 
+
+.name-types {
+    margin-top: 80px;
+}
+
+
 .wrap-card-detail h3 {
     color: white;
 }
 
-.imagen-detalle{
+.imagen-detalle {
     min-height: 300px;
     max-width: 400px;
 }
 
-.wrap-letters{
+.wrap-letters {
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+    min-height: 370px;
+    max-width: 530px;
+}
+
+.primera-fila {
+    margin-right: 40px;
+    margin-top: 80px;
+    margin-left: 40px;
+}
+
+.segunda-fila {
+    margin-right: 40px;
+    margin-top: 80px;
+}
+
+
+.tercera-fila {
+    margin-top: 80px;
+}
+
+
+.button-details-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    height: 50px;
+    width: 80px;
+    font-size: 22px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    transition: .3s ease all;
+    position: relative;
+    
+}
+
+
+.button-details-back span {
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+
+.button-details-back::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: crimson;
+    position: absolute;
+    z-index: 1;
+    top: -80px;
+    left:0;
+    transition: .3s ease-in-out all ;
 
 }
+
+.button-details-back:hover::after  {
+    top:0
+}
+ 
+ 
+
+

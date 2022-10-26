@@ -84,21 +84,61 @@
     max-width: 550px;
 }
 
+/*Boton back*/
+
 .boton-back {
     cursor: pointer;
     font-size: 20px;
     height: 40px;
     padding: 5px;
     margin: 10px;
+    font-size: 22px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    transition: .3s ease all;
+    position: relative;
 }
+
+.boton-back span {
+    position: relative;
+    z-index: 2;
+    transition: .3s ease all;
+}
+
+.boton-back::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: crimson;
+    position: absolute;
+    z-index: 1;
+    top: -80px;
+    left:0;
+    transition: .3s ease-in-out all ;
+
+}
+
+.boton-back:hover::after  {
+    top:0
+}
+
+
+
+
 
 .contenedor-delete {
     display: flex;
     margin: 5px;
+    
     padding: 10px;
     height: 40px;
     width: 30px;
-    color: yellowgreen;
+    color: white;
 }
 
 .button-x-type{
@@ -106,6 +146,7 @@
     border: 2px solid white;
     background-color: black;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 

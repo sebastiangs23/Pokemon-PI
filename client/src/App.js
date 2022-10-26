@@ -1,13 +1,6 @@
 import './App.css';
-import React, { Suspense, lazy } from 'react'; //loader
-
+import React, { Suspense, lazy } from 'react'; 
 import { BrowserRouter as Router, Route } from "react-router-dom"
-// import Home from './componentes/home/home';
-// import LandingPage from './componentes/landingPage/landingpage';
-// import CreatePoke from './componentes/createPoke/createPoke';
-// import Details from './componentes/details/details';
-
-//Loader
 import Loader from './componentes/loader/loader';
 
 //LAZY
@@ -17,10 +10,9 @@ const Home = lazy(() => import("./componentes/home/home"))
 const Details = lazy(() => import("./componentes/details/details"))
 
 function App() {
-  return ( //Aca deben ir las rutas
+  return ( 
 
     <div className="App">
-
       <Router>
 
         <Suspense fallback={<div> {<Loader />}  </div>} >
@@ -41,9 +33,6 @@ function App() {
 
 
       </Router>
-
-
-
     </div >
   );
 }
