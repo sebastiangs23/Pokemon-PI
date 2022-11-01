@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain, getPokemonType, getFilter, getOnlyCreate, getAllTypes, getAllTypesAgain } from "../../store/actions/actionsPoke"
+import {
+    getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain,
+    getPokemonType, getFilter, getOnlyCreate, getAllTypes, getAllTypesAgain
+} from "../../store/actions/actionsPoke"
 import SearchBar from "../searchBar/searchbar";
 import Paginado from "../paginado/paginado";
 import "./home.css"
@@ -10,11 +13,10 @@ function Home() {
     const dispatch = useDispatch();
     const [orden, setOrden] = useState([])
 
-
     const saveState = useSelector(state => state.pokemonsfiltrados)
+    var types = useSelector((state) => state.alltypes)
 
 
-    //Paginado
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsXPage] = useState(12)
     const lastPokemon = currentPage * pokemonsXPage;
@@ -24,18 +26,18 @@ function Home() {
         setCurrentPage(numberPage)
     }
 
-    useEffect(() => {
+    useEffect(() => {  //Este es el mayor de mis problemas creo
         dispatch(getPokemonsBack())
-        dispatch(getPokemonsBackAgain())
-        dispatch(getPokemonType())
+        dispatch(getPokemonsBackAgain())  //soluciona un bug pero no recuerdo cual?? pq puse 2
+        // dispatch(getPokemonType())
         dispatch(getFilter())
-
-
+        dispatch(getAllTypes())  //Hay veces que la 1era vez solo me rendeeriza 5,
+        dispatch(getAllTypesAgain()) // nose pq aveces no funciona
     }, [])
 
     function handleClick(e) {
         e.preventDefault()
-        dispatch(getPokemonsBackAgain())
+        dispatch(getPokemonsBackAgain())  //dispatch(getPokemonsBackAgain())  antes asi
     }
 
     function handleSortName(e) {
@@ -65,7 +67,7 @@ function Home() {
         <div className="all-conteiner">
 
             <header>
-                <SearchBar /> {/* Como esta dentro del componente Home se le mapea el estado */}
+                <SearchBar />
             </header>
 
             <div className="contenedor-create-volver" >
@@ -73,64 +75,55 @@ function Home() {
                     <button className="back-button" onClick={e => { handleClick(e) }}>  Volver a cargar   </button>
                 </div>
 
+                <div className="filtros-conteiner">
+
+                    <div className="wrap-contenedor-filtros-alfabetico" >
+                        <h4>Alphabetic</h4>
+                        <select onChange={(e) => handleSortName(e)} className="contenedor-filtros-alfabetico">
+                            <option value="all" > ABC </option>
+                            <option value="asc" > A-Z </option>
+                            <option value="des" > Z-A </option>
+                        </select>
+                    </div>
+
+                    <div className="wrap-contenedor-filtros-fuerza" >
+                        <h4>The Strongest</h4>
+                        <select onChange={(e) => handleStronger(e)} className="contenedor-filtros-fuerza" >
+                            <option value="all" > Select </option>
+                            <option value="more"> Stronger </option>
+                            <option value="less" > Weaker </option>
+                        </select>
+                    </div>
+
+                    <div className="wrap-contenedor-createdatabase-createforus" >
+                        <h4> Db o Api </h4>
+                        <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
+                            <option value="all" > Select </option>
+                            <option value="db"> Existente </option>
+                            <option value="us"> Nuestro </option>
+                        </select>
+                    </div>
+
+                    <div className="wrap-contenedor-tipos" >
+                        <h4> Types </h4>
+                        <select onChange={(e) => { handleFilterType(e) }} className="contenedor-tipos">
+                            {types.map((t) => (
+                                <option value={t.name} > {t.name} </option>))}
+                        </select>
+
+                    </div>
+
+                </div>
+
                 <div className="wrap-link" >
                     <Link to="/home/create"  >
                         <button className="button-create" > <span> + Create  </span> </button>
                     </Link>
-
                 </div>
-
-
             </div>
-
-            <div className="filtros-conteiner">
-
-                <div className="wrap-contenedor-filtros-alfabetico" >
-                    <select onChange={(e) => handleSortName(e)} className="contenedor-filtros-alfabetico">
-                        <option value="all" > Alphabetic </option>
-                        <option value="asc" > A-Z </option>
-                        <option value="des" > Z-A </option>
-                    </select>
-                </div>
-
-                <div className="wrap-contenedor-filtros-fuerza" >
-                    <select onChange={(e) => handleStronger(e)} className="contenedor-filtros-fuerza" >
-                        <option value="all" > Select By </option>
-                        <option value="more"> Stronger </option>
-                        <option value="less" > Weaker </option>
-                    </select>
-                </div>
-
-                <div className="wrap-contenedor-createdatabase-createforus" >
-                    <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
-                        <option value="all" > Select By </option>
-                        <option value="us"> Create for us </option>
-                        <option value="db"> Existente </option>
-                    </select>
-                </div>
-
-                <div className="wrap-contenedor-tipos" >
-
-                    <select onChange={(e) => { handleFilterType(e) }} className="contenedor-tipos">
-                        <option value="all" > Select Type </option>
-                        <option value="grass" > grass </option>
-                        <option value="fire" > fire </option>
-                        <option value="water" > water </option>
-                        <option value="bug" > bug </option>
-                        <option value="normal" > normal </option>
-                        <option value="poison" > poison </option>
-                        <option value="electric" > electric </option>
-                        <option value="ground" > ground </option>
-                        <option value="fairy" > fairy </option>
-                    </select>
-
-                </div>
-
-            </div>
-
 
             <div className="contenedor-cards">
-                {PokeRender.map((p) => { //La variable que permite traer solo 12 pokemons
+                {PokeRender.map((p) => {
                     return (
                         <div className="individual-cards">
                             <Link to={`home/detail/${p.id}`} className="link-line" >
@@ -146,10 +139,7 @@ function Home() {
                                 <figure>
                                     <img src={p.image} className="image-individual-card" />
                                 </figure>
-
-
                             </Link>
-
                         </div>
                     )
                 })}
@@ -159,7 +149,7 @@ function Home() {
                 <div>
                     {saveState && (
                         <Paginado
-                            pokemonsXPage={pokemonsXPage} //
+                            pokemonsXPage={pokemonsXPage}
                             saveState={saveState.length}
                             paginadoEstoy={paginadoEstoy} />
                     )}
@@ -172,5 +162,4 @@ function Home() {
 }
 
 
-//antes usaba mapstate y mapstatetoprops, ahora uso useSelector
 export default Home;

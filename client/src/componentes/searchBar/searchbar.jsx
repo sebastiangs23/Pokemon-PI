@@ -6,17 +6,18 @@ import { getPokemonByName } from "../../store/actions/actionsPoke"
 function SearchBar() {
     const dispatch = useDispatch()
 
-    const [buscar, setBuscar] = useState("");//Va ir actualizando el estado en cada minimo cambio
+    const [buscar, setBuscar] = useState("");
 
-    const handleChange = (e) => { //Para saber cuando se realizar cualquier cambio en el input
+    const handleChange = (e) => { 
         e.preventDefault()
         setBuscar(e.target.value)
         console.log(e.target.value)
     } 
     
-    const handleSubmit = (s) => {//Para saber cuando hace el submit
+    const handleSubmit = (s) => {
         s.preventDefault()
         dispatch(getPokemonByName(buscar))
+        setBuscar("")
     }
 
     return (

@@ -2,24 +2,23 @@ const { Pokemon, Types } = require("../db")
 const axios = require("axios")
 const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon"
 
-const getPokemonApi = async (req, res) => { //Fn que trae los datos necesarios de la API
+const getPokemonApi = async (req, res) => { 
     try {
-        const primeros20 = await axios.get(POKEMON_URL)  //En el readme indica que solo 40
-        const segundos20 = await axios.get(primeros20.data.next) //Arriba 20 y aca 20 = 40
+        const primeros20 = await axios.get(POKEMON_URL) 
+        const segundos20 = await axios.get(primeros20.data.next) 
 
         const pokedata1 = primeros20.data.results.map((e) => axios.get(e.url))
         const pokedata2 = segundos20.data.results.map((e) => axios.get(e.url))
 
-        const concatPokemon = pokedata1.concat(pokedata2)
+        const fusion = pokedata1.concat(pokedata2)
 
-        const promisePokemon = await Promise.all(concatPokemon).then((e) => {
+        const promisePokemon = await Promise.all(fusion).then((e) => {
             let pokemon = e.map((e) => e.data)
 
-            let pokemonsApi = []
+            let almacenamiento = []
             pokemon.map((e) => {
                 let saveurlimg = e.sprites.other["official-artwork"].front_default
-
-                pokemonsApi.push({
+                almacenamiento.push({
                     id: e.id,
                     name: e.name,
                     types: e.types.map((e) => e.type.name),
@@ -30,45 +29,25 @@ const getPokemonApi = async (req, res) => { //Fn que trae los datos necesarios d
                     height: e.height,
                     weight: e.weight,
                     image: saveurlimg,
-
                 })
             })
-            return pokemonsApi
+            return almacenamiento
         })
         return promisePokemon
     } catch (error) {
-        console.log(error)
-        res.status(400).send("Hubo un error al cargar los pokemones de la API")
+        res.status(400).send(error)
     }
 }
 
-const getPokemonApiSend = async (req,res) => {//fn exclusiva para saber en el filtro los pokemones que no hemos creado nosotros 
+const getPokemonApiSend = async (req,res) => {
     const send = await getPokemonApi()
     res.send(send)
 } 
 
-const getAllPokemons = async (req, res) => {
+const getAllPokemonsReturn = async (req, res) => {
     try {
-        const allPokeApi = await getPokemonApi() //De la API
-        const allPokeDb = await Pokemon.findAll({ //De la Db
-            include: [{
-                model: Types,
-                attributes: ["name"]
-            }]
-        })
-        const fullPokemons = allPokeDb.concat(allPokeApi)
-        res.send(fullPokemons)
-
-    } catch (error) {
-        console.log(error)
-        res.status(400).send("Error al cargar todos los pokemones")
-    }   
-}
-
-const getAllPokemonsBug = async (req, res) => {
-    try {
-        const allPokeApi = await getPokemonApi() //De la API
-        const allPokeDb = await Pokemon.findAll({ //De la Db
+        const allPokeApi = await getPokemonApi() 
+        const allPokeDb = await Pokemon.findAll({ 
             include: [{
                 model: Types,
                 attributes: ["name"]
@@ -78,8 +57,24 @@ const getAllPokemonsBug = async (req, res) => {
         return fullPokemons
 
     } catch (error) {
-        console.log(error)
-        res.status(400).send("Error al cargar todos los pokemones")
+        res.status(400).send(error)
+    }   
+}
+
+const getAllPokemonsSend = async (req, res) => {
+    try {
+        const allPokeApi = await getPokemonApi() 
+        const allPokeDb = await Pokemon.findAll({ 
+            include: [{
+                model: Types,
+                attributes: ["name"]
+            }]
+        })
+        const fullPokemons = allPokeDb.concat(allPokeApi)
+        res.send(fullPokemons)
+
+    } catch (error) {
+        res.status(400).send(error)
     }   
 }
 
@@ -88,7 +83,7 @@ const getPokemonsById = async (req, res) => {
     const { id } = req.params
     try{
         if (id.length > 4) {
-            let busquedaDb = await Pokemon.findByPk(id, { include: { model: Types } }) //En caso este en la DB
+            let busquedaDb = await Pokemon.findByPk(id, { include: { model: Types } }) 
             let ordenarPokeDb = {
                 id: busquedaDb.id,
                 image: busquedaDb.image,
@@ -101,11 +96,11 @@ const getPokemonsById = async (req, res) => {
                 height: busquedaDb.height,
                 weight: busquedaDb.weight,
             }
-            var wrap = []  //Lo necesito en un array por la fn que tengo al momento de renderizar los details
+            var wrap = []  
             wrap.push(ordenarPokeDb)
             res.send(wrap)
         } else {
-            const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`) //En caso este en la API
+            const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`) 
     
             let saveImageUrl = pokeApiName.data.sprites.other["official-artwork"].front_default
             const pokeApiFiltrado = [{
@@ -129,15 +124,13 @@ const getPokemonsById = async (req, res) => {
     }catch(error){
         res.status(400).send("No se encontro ningun pokemon con ese ID")
     }
-    
-
 }
 
 const getPokemonByName = async (req, res) => {
     try {
-        const { name } = req.query //
+        const { name } = req.query 
 
-        const pokeDb = await Pokemon.findAll({  //1ero buscamos en la DB
+        const pokeDb = await Pokemon.findAll({  
             include: [{
                 model: Types,
                 attributes: ["name"]
@@ -150,7 +143,7 @@ const getPokemonByName = async (req, res) => {
             return "Se encontro en la DB"
         }
 
-        const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`) //2do buscamos en la API
+        const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`) 
 
         let saveImageUrl = pokeApiName.data.sprites.other["official-artwork"].front_default
         const pokeApiFiltrado = [{
@@ -166,21 +159,20 @@ const getPokemonByName = async (req, res) => {
             image: saveImageUrl
         }]
 
-
         if (pokeApiFiltrado.length) {
             res.send(pokeApiFiltrado)
         }
 
     } catch (error) {
-        res.status(400).send("No se encontro el pokemon mediante el nombre")
+        res.status(400).send(error)
     }
 }
 
-const createPokemonBd = async (req, res) => {
+const createPokemonBd = async (req, res) => { //necestio cambiar esto //findOrCreate
     try {
         const { name, types, hp, attack, defense, speed, height, weight, image } = req.body 
         
-        let allPokes = await getAllPokemonsBug()
+        let allPokes = await getAllPokemonsReturn()
 
         let seRepite = allPokes.filter((e) => e.name.toLowerCase() ===  name.toLowerCase())
 
@@ -197,32 +189,36 @@ const createPokemonBd = async (req, res) => {
                   where: {name: t,},})
                 nuevoPoke.addTypes(newType[0])
               })
-            res.status(200).send('Pokemon agregado de manera exitosa.') //pequeno bug
+            res.status(200).send('Pokemon agregado de manera exitosa.') 
         }
         
     } catch (error) {
-        console.log('error al postear',error)
-        res.status(404).send("Error al agregar tu pokemon")
+        res.status(404).send(error)
     }
 }
 
-const getTypePokemon = async (req, res) => {  //Solo me trae los tipos de los 40 primeros
+const getTypePokemon = async (req, res) => {  
     const pokemones = await getPokemonApi();
     const allcontenedor = [];
     
     pokemones.map(t => allcontenedor.push((t.types[0] || t.types[1])))
-    const noRepeat = [...new Set(allcontenedor)] //No repeat
-    noRepeat.forEach((e) => {
+    const noRepeat = [...new Set(allcontenedor)] //Aca tengo los 9 types
+
+    noRepeat.forEach((e) => { //Me llegan 5 o 7 aveces
         Types.findOrCreate({
-            where:{
-                name: e
-            }
+            where:{name: e}
         })
     })
 
-    const alltypes = await Types.findAll()//
+    const alltypes = await Types.findAll()
     res.status(200).send(alltypes)
+    // return alltypes
 }
+
+// const getTypePokemonSend = async(req,res) => { //Diferencia entre mandarlo asi y lo de arriba
+//     let tipos = await getTypePokemon(); //Sigue tirando el error
+//     res.status(200).send(tipos)
+// }
 
 const getPokemonsCratedByMyself = async(req,res) => {
     try{
@@ -234,9 +230,10 @@ const getPokemonsCratedByMyself = async(req,res) => {
         })
         res.status(200).send(myPokes)
     }catch(error){
-        console.log(error)
+        res.status(200).send(error)
     }
 }
 
 
-module.exports = { getPokemonApi,getPokemonApiSend, getAllPokemons, getPokemonByName, getTypePokemon, getPokemonsById,getPokemonsCratedByMyself, createPokemonBd }
+module.exports = { getPokemonApi,getPokemonApiSend, getAllPokemonsSend, getPokemonByName, 
+                   getTypePokemon, getPokemonsById,getPokemonsCratedByMyself, createPokemonBd}

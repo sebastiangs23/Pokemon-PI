@@ -3,10 +3,10 @@ const initialState = { pokemons: [], pokemonsfiltrados: [], alltypes: [], detail
 function filterAlphab(pokemons, payload) {
     let orden = pokemons;
     const ordenAZ = payload === "asc" ? orden.sort(function (a, b) {  
-        if (a.name > b.name) return 1; //de menor a mayor
+        if (a.name > b.name) return 1; 
         if (b.name > a.name) return -1;
         return 0;
-    }) : orden.sort(function (a, b) { //De mayor a menor
+    }) : orden.sort(function (a, b) { 
         if (a.name > b.name) return -1;
         if (b.name > a.name) return 1;
         return 0;

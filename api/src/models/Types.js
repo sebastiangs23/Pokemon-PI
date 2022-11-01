@@ -1,4 +1,3 @@
-//Aca ira el modelo de types
 const { DataTypes } = require("sequelize")
 
 module.exports = (sequelize) => {

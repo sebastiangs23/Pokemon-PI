@@ -40,7 +40,6 @@ function Details() {
                                 </div>
                             </div>
 
-
                             <img src={p.image} className="imagen-detalle" />
                             <div className="wrap-letters" >
 
@@ -59,9 +58,6 @@ function Details() {
                                     <h3> Weight: </h3> <h4> {p.weight} </h4>
                                     <h3> ID: </h3> <h4> {p.id} </h4>
                                 </div>
-
-
-
 
                             </div>
 

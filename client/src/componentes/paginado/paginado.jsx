@@ -1,10 +1,10 @@
 import React from "react"
 import "./paginado.css"
 
-function Paginado({ pokemonsXPage, saveState, paginadoEstoy }) {  //props
-    const pageNumber = []; //El numero total de paginas
+function Paginado({ pokemonsXPage, saveState, paginadoEstoy }) {  
+    const pageNumber = []; 
 
-    for (let i = 1; i <= Math.ceil(saveState / pokemonsXPage); i++) { //Le manda el saveState.length 
+    for (let i = 1; i <= Math.ceil(saveState / pokemonsXPage); i++) {
         pageNumber.push(i);
     }
 

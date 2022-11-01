@@ -1,16 +1,26 @@
 import axios from "axios";
 
 
+// export function getPokemonsBack() { //usar maybe async await
+//     return function (dispatch) {
+//         axios.get("http://localhost:3001/home/pokemons").then((p) => {
+//             return dispatch({
+//                 type: "GET_POKEMONS",
+//                 payload: p.data
+//             })
+//         })
+//     }
+// }
+
 export function getPokemonsBack() {
-    return function (dispatch) {
-        axios.get("http://localhost:3001/home/pokemons").then((p) => {
-            return dispatch({
-                type: "GET_POKEMONS",
-                payload: p.data
-            })
-        })
-    }
-}
+    return async function (dispatch) {
+      var pokemons = await axios.get("http://localhost:3001/home/pokemons");
+      return dispatch({
+        type: "GET_POKEMONS",
+        payload: pokemons.data,
+      });
+    };
+  }
 
 export function getPokemonsBackAgain() { 
     return function (dispatch) {
@@ -52,13 +62,13 @@ export function getPokemonAtack(payload) {
     }
 }
 
-export function getFilter() {//Lo que hace es actualizar el estado e instantaneamente el estado vuelve a tener todo y
-    return {                // no se setea por el de pokemones filtrados
+export function getFilter() {
+    return {                
         type: "GET_FILTER"
     }
 }
 
-export function getPokemonType(payload) { //Toda esta fn cambiada
+export function getPokemonType(payload) { 
     return {
         type: "FILTER_BY_TYPE",
         payload,
@@ -90,7 +100,7 @@ export function getOnlyCreate(payload) {
 
     else {
         return function (dispatch) {
-            axios.get("http://localhost:3001/home/pokemons/apipokemons").then((p) => {
+            axios.get("http://localhost:3001/home/pokemons  ").then((p) => {
                 return dispatch({
                     type: "GET_ONLY_CREATE",
                     payload: p.data
@@ -127,7 +137,7 @@ export function postPokemon(payload){
             alert("Pokemon creado correctamente !!!")
             return upload 
         }catch(error){
-            alert("Error el nombre ya existe u olvidate escogerle types.")
+            alert("Error el nombre ya existe u olvidaste escogerle types.")
         }
     }
     

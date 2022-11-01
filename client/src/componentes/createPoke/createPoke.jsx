@@ -6,14 +6,13 @@ import { getAllTypes, getAllTypesAgain, postPokemon, getPokemonsBackAgain } from
 
 
 
-function CreatePoke() {  //Anotar como hacer para crear
+function CreatePoke() {  
   const dispatch = useDispatch()
-  var types = useSelector((state) => state.alltypes) //ya tiene todos
+  var types = useSelector((state) => state.alltypes) 
 
   const [inputs, setInputs] = useState({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] })
 
-  const handleChange = (e) => { //i dont need it
-    console.log(e.target.value)
+  const handleChange = (e) => { 
 
     setInputs({
       ...inputs,
@@ -21,19 +20,19 @@ function CreatePoke() {  //Anotar como hacer para crear
     })
   }
 
-  //validacion de names
+  //validaciones
   const [numberError, setNumberError] = useState(1)
   const handleChangeName = (e) => { //
     const value = e.target.value
     const some = value.length > 0
     const minValue = value.length > 2;
     const maxValue = value.length < 14;
-    const onlyLetras = /^[a-zA-Z\s]*$/g.test(value); //X
+    const onlyLetras = /^[a-zA-Z\s]*$/g.test(value); 
 
-    //Posibles Errores                              
-    if (some == false) {//Cuando haya algo         
+                                  
+    if (some == false) {         
       setNumberError(1)
-    } else if (onlyLetras == false) { //X
+    } else if (onlyLetras == false) { 
       setNumberError(2)
     } else if (!minValue) {
       setNumberError(3)
@@ -41,7 +40,7 @@ function CreatePoke() {  //Anotar como hacer para crear
       setNumberError(4)
     }
 
-    if (onlyLetras == true && minValue && maxValue && some) {  //Cuando va bien 
+    if (onlyLetras == true && minValue && maxValue && some) {   
       setNumberError(0)
     }
 
@@ -51,7 +50,6 @@ function CreatePoke() {  //Anotar como hacer para crear
     })
   }
 
-  //validacion speed
   const [speedError, setSpeedError] = useState(1)
   const handleChangeSpeed = (e) => {
     const valueSpeed = e.target.value
@@ -67,18 +65,17 @@ function CreatePoke() {  //Anotar como hacer para crear
       setSpeedError(3)
     }
 
-    if (minValueS == true && maxValueS && some) {  //Cuando va bien
+    if (minValueS == true && maxValueS && some) { 
       setSpeedError(0)
     }
 
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  //validacion de altura
+  
   const [heightError, setHeightError] = useState(1)
   const handleChangeHeight = (e) => {
     const valueHeight = e.target.value;
@@ -98,15 +95,14 @@ function CreatePoke() {  //Anotar como hacer para crear
       setHeightError(0)
     }
 
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  //validaciones de peso
-  const [weightError, setWeightError] = useState(1) //1
+  
+  const [weightError, setWeightError] = useState(1) 
   const handleChangeWeight = (e) => {
     const valueWeight = e.target.value;
     const some = valueWeight.length > 0
@@ -121,18 +117,17 @@ function CreatePoke() {  //Anotar como hacer para crear
       setWeightError(3)
     }
 
-    if (minWeight == true && maxWeight && some) {  //Cuando va bien
+    if (minWeight == true && maxWeight && some) {  
       setWeightError(0)
     }
 
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  const [hptError, sethpError] = useState(1) //1
+  const [hptError, sethpError] = useState(1) 
   const handleChangeHp = (e) => {
     const valueHp = e.target.value;
     const some = valueHp.length > 0;
@@ -144,18 +139,17 @@ function CreatePoke() {  //Anotar como hacer para crear
       sethpError(2)
     }
 
-    if (minHp == true && some) {  //Cuando va bien
+    if (minHp == true && some) {  
       sethpError(0)
     }
 
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  const [attacktError, setAttackError] = useState(1) //1
+  const [attacktError, setAttackError] = useState(1)
   const handleChangeAttack = (e) => {
     const valueAttack = e.target.value;
     const some = valueAttack.length > 0;
@@ -167,18 +161,18 @@ function CreatePoke() {  //Anotar como hacer para crear
       setAttackError(2)
     }
 
-    if (minAttack == true && some) {  //Cuando va bien
+    if (minAttack == true && some) {  
       setAttackError(0)
     }
 
-    console.log(e.target.value)
+  
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  const [defensetError, setDefenseError] = useState(1) //1
+  const [defensetError, setDefenseError] = useState(1) 
   const handleChangeDefense = (e) => {
     const valueDefense = e.target.value;
     const some = valueDefense.length > 0;
@@ -190,18 +184,17 @@ function CreatePoke() {  //Anotar como hacer para crear
       setDefenseError(2)
     }
 
-    if (minDefense == true && some) {  //Cuando va bien
+    if (minDefense == true && some) {  
       setDefenseError(0)
     }
 
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
     })
   }
 
-  const [imagetError, setImageError] = useState(1) //1
+  const [imagetError, setImageError] = useState(1)
   const handleChangeImage = (e) => {
     const valueImage = e.target.value;
     const some = valueImage.length > 0;
@@ -213,11 +206,9 @@ function CreatePoke() {  //Anotar como hacer para crear
       setImageError(2)
     }
 
-    if (minImage == true && some) {  //Cuando va bien
+    if (minImage == true && some) {  
       setImageError(0)
     }
-
-    console.log(e.target.value)
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value
@@ -231,7 +222,6 @@ function CreatePoke() {  //Anotar como hacer para crear
       ...inputs,
       types: [...inputs.types, e.target.value]
     });
-    console.log(inputs.types)
   }
 
   const handleDelete = (t, e) => {
@@ -244,10 +234,10 @@ function CreatePoke() {  //Anotar como hacer para crear
 
 
 
-  const handleSubmit = (e) => {  //Esto sera lo ultimo que aprende antes de que el pokemon se cree
+  const handleSubmit = (e) => { 
     e.preventDefault()
     dispatch(postPokemon(inputs))
-    setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank again
+    setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank 
   }
 
 
@@ -404,7 +394,7 @@ function CreatePoke() {  //Anotar como hacer para crear
 
         <div className="contenedor-rellenar">
           <h4>Type</h4>
-          <select onChange={(e) => handleSelect(e)} name="types" > {/*Necesito mi estado global*/}
+          <select onChange={(e) => handleSelect(e)} name="types" > 
             {types.map((t) => (
               <option value={t.name} > {t.name} </option>))}
           </select>

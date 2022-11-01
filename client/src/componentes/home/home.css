@@ -9,13 +9,14 @@ body{
 
 .contenedor-create-volver{
    margin-top: 50px;    
-   height: 60px;
+   height: 90px;
    overflow: hidden;
 }
 
 .wrap-back-button{
     float: left;
-    margin-left: 25px;
+    margin-left: 155px;
+    margin-right: 235px;
     
 }
 
@@ -26,13 +27,15 @@ body{
 
 .wrap-link{
     float: left;
-    margin-left: 1250px;
-    margin-right: 0px;
+    min-width: 100px;
+    margin-top: 0px;
+    margin-left: 350px;
+    margin-right: 10px;
 }
 
 /*button create*/
 .button-create{
-    display: inline-flex;
+    
     align-items: center;
     justify-content: center;
     margin: 10px;
@@ -91,6 +94,7 @@ body{
     overflow: hidden;
     margin-left :5px ;
     margin-right: 5px;
+    margin-top: 0px;
     background-color: #fff;
     box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
     transition: all 400ms ease;
@@ -123,23 +127,32 @@ img{
 
 
 .filtros-conteiner{
-    height: 50px;
+    float: left;
+    height: 100px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.filtros-conteiner h4{
+    color: wheat;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
 .wrap-contenedor-filtros-alfabetico{
+    margin-top: 0px;
     border: 2px solid lightgray;
     border-radius: 5px;
-    height: 40px;
+    height: 55px;
+    width: 110px;
+
 }
 
 .contenedor-filtros-alfabetico{
     margin-top: 10px;
-    margin-left: 35px;
+    margin-left: 27px;
     margin-right: 35px;
     border-radius: 5px;
     font-size: 16px;
@@ -150,14 +163,15 @@ img{
 .wrap-contenedor-filtros-fuerza{
     border: 2px solid lightgray;
     border-radius: 5px;
-    height: 40px;
+    height: 55px;
+    width: 130px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .contenedor-filtros-fuerza{
     margin-top: 10px;
-    margin-left: 35px;
+    margin-left: 25px;
     margin-right: 35px;
     border-radius: 5px;
     font-size: 16px;
@@ -168,14 +182,15 @@ img{
 .wrap-contenedor-tipos{
     border: 2px solid lightgray;
     border-radius: 5px;
-    height: 40px;
+    height: 55px;
+    width: 100px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
 .contenedor-tipos{
     margin-top: 10px;
-    margin-left: 35px;
+    margin-left: 15px;
     margin-right: 35px;
     border-radius: 5px;
     font-size: 16px;
@@ -186,14 +201,15 @@ img{
 .wrap-contenedor-createdatabase-createforus{
     border: 2px solid lightgray;
     border-radius: 5px;
-    height: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
+    height: 55px;
+    width: 110px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .contenedor-createdatabase-createforus{
     margin-top: 10px;
-    margin-left: 35px;
+    margin-left: 11px;
     margin-right: 35px;
     border-radius: 5px;
     font-size: 16px;
