@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import {
     getPokemonsBack, getPokemonsAlphabetic, getPokemonAtack, getPokemonsBackAgain,
-    getPokemonType, getFilter, getOnlyCreate, getAllTypes, getAllTypesAgain
+    getPokemonType, getFilter, getOnlyCreate, getAllTypes,
 } from "../../store/actions/actionsPoke"
 import SearchBar from "../searchBar/searchbar";
 import Paginado from "../paginado/paginado";
@@ -28,11 +28,10 @@ function Home() {
 
     useEffect(() => {  //Error ms
         dispatch(getPokemonsBack())
-        dispatch(getPokemonsBackAgain())  //soluciona un bug pero no recuerdo cual?? pq puse 2
+        // dispatch(getPokemonsBackAgain())  //PORQUE 2??
         // dispatch(getPokemonType())  //No es necesario ??
         dispatch(getFilter())
         dispatch(getAllTypes())  //Hay veces que la 1era vez solo me rendeeriza 5,
-        // dispatch(getAllTypesAgain()) // nose pq aveces no funciona
     }, [])
 
     function handleClick(e) {

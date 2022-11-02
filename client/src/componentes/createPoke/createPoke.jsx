@@ -2,7 +2,7 @@ import "./createPoke.css"
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAllTypes, getAllTypesAgain, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
+import { getAllTypes,postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
 
 
 
@@ -243,9 +243,8 @@ function CreatePoke() {
 
 
   useEffect(() => {
-    dispatch(getPokemonsBackAgain())
-    dispatch(getAllTypes())  //Para renderizar los tipos de pokemones
-    dispatch(getAllTypesAgain())
+    dispatch(getPokemonsBackAgain()) //the next one witch need to delete or optimizate
+    dispatch(getAllTypes())  //i only need to call it 1 time
   }, [])
 
 

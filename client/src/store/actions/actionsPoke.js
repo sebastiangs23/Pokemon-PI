@@ -20,7 +20,7 @@ export function getPokemonsBack() {
         payload: pokemons.data,
       });
     };
-  }
+}
 
 export function getPokemonsBackAgain() { 
     return function (dispatch) {
@@ -115,16 +115,6 @@ export function getAllTypes(){
         var types = await axios.get("http://localhost:3001/home/pokemons/types");
         return dispatch({
             type: "GET_TYPES",
-            payload: types.data
-        })
-    }
-}
-
-export function getAllTypesAgain(){
-    return async function(dispatch){
-        var types = await axios.get("http://localhost:3001/home/pokemons/types");
-        return dispatch({
-            type: "GET_TYPES_AGAIN",
             payload: types.data
         })
     }
