@@ -26,13 +26,13 @@ function Home() {
         setCurrentPage(numberPage)
     }
 
-    useEffect(() => {  //Este es el mayor de mis problemas creo
+    useEffect(() => {  //Error ms
         dispatch(getPokemonsBack())
         dispatch(getPokemonsBackAgain())  //soluciona un bug pero no recuerdo cual?? pq puse 2
-        // dispatch(getPokemonType())
+        // dispatch(getPokemonType())  //No es necesario ??
         dispatch(getFilter())
         dispatch(getAllTypes())  //Hay veces que la 1era vez solo me rendeeriza 5,
-        dispatch(getAllTypesAgain()) // nose pq aveces no funciona
+        // dispatch(getAllTypesAgain()) // nose pq aveces no funciona
     }, [])
 
     function handleClick(e) {

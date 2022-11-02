@@ -2,10 +2,10 @@ const { Pokemon, Types } = require("../db")
 const axios = require("axios")
 const POKEMON_URL = "https://pokeapi.co/api/v2/pokemon"
 
-const getPokemonApi = async (req, res) => { 
+const getPokemonApi = async (req, res) => {
     try {
-        const primeros20 = await axios.get(POKEMON_URL) 
-        const segundos20 = await axios.get(primeros20.data.next) 
+        const primeros20 = await axios.get(POKEMON_URL)
+        const segundos20 = await axios.get(primeros20.data.next)
 
         const pokedata1 = primeros20.data.results.map((e) => axios.get(e.url))
         const pokedata2 = segundos20.data.results.map((e) => axios.get(e.url))
@@ -39,15 +39,15 @@ const getPokemonApi = async (req, res) => {
     }
 }
 
-const getPokemonApiSend = async (req,res) => {
+const getPokemonApiSend = async (req, res) => {
     const send = await getPokemonApi()
     res.send(send)
-} 
+}
 
 const getAllPokemonsReturn = async (req, res) => {
     try {
-        const allPokeApi = await getPokemonApi() 
-        const allPokeDb = await Pokemon.findAll({ 
+        const allPokeApi = await getPokemonApi()
+        const allPokeDb = await Pokemon.findAll({
             include: [{
                 model: Types,
                 attributes: ["name"]
@@ -58,13 +58,13 @@ const getAllPokemonsReturn = async (req, res) => {
 
     } catch (error) {
         res.status(400).send(error)
-    }   
+    }
 }
 
 const getAllPokemonsSend = async (req, res) => {
     try {
-        const allPokeApi = await getPokemonApi() 
-        const allPokeDb = await Pokemon.findAll({ 
+        const allPokeApi = await getPokemonApi()
+        const allPokeDb = await Pokemon.findAll({
             include: [{
                 model: Types,
                 attributes: ["name"]
@@ -75,15 +75,15 @@ const getAllPokemonsSend = async (req, res) => {
 
     } catch (error) {
         res.status(400).send(error)
-    }   
+    }
 }
 
 const getPokemonsById = async (req, res) => {
 
     const { id } = req.params
-    try{
+    try {
         if (id.length > 4) {
-            let busquedaDb = await Pokemon.findByPk(id, { include: { model: Types } }) 
+            let busquedaDb = await Pokemon.findByPk(id, { include: { model: Types } })
             let ordenarPokeDb = {
                 id: busquedaDb.id,
                 image: busquedaDb.image,
@@ -96,12 +96,12 @@ const getPokemonsById = async (req, res) => {
                 height: busquedaDb.height,
                 weight: busquedaDb.weight,
             }
-            var wrap = []  
+            var wrap = []
             wrap.push(ordenarPokeDb)
             res.send(wrap)
         } else {
-            const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`) 
-    
+            const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+
             let saveImageUrl = pokeApiName.data.sprites.other["official-artwork"].front_default
             const pokeApiFiltrado = [{
                 id: pokeApiName.data.id,
@@ -115,22 +115,22 @@ const getPokemonsById = async (req, res) => {
                 weight: pokeApiName.data.weight,
                 image: saveImageUrl
             }]
-    
+
             if (pokeApiFiltrado.length) {
                 res.send(pokeApiFiltrado)
                 return "Se encontro en la API"
             }
         }
-    }catch(error){
+    } catch (error) {
         res.status(400).send("No se encontro ningun pokemon con ese ID")
     }
 }
 
 const getPokemonByName = async (req, res) => {
     try {
-        const { name } = req.query 
+        const { name } = req.query
 
-        const pokeDb = await Pokemon.findAll({  
+        const pokeDb = await Pokemon.findAll({
             include: [{
                 model: Types,
                 attributes: ["name"]
@@ -143,7 +143,7 @@ const getPokemonByName = async (req, res) => {
             return "Se encontro en la DB"
         }
 
-        const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`) 
+        const pokeApiName = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
 
         let saveImageUrl = pokeApiName.data.sprites.other["official-artwork"].front_default
         const pokeApiFiltrado = [{
@@ -170,70 +170,93 @@ const getPokemonByName = async (req, res) => {
 
 const createPokemonBd = async (req, res) => { //necestio cambiar esto //findOrCreate
     try {
-        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body 
-        
+        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
+
         let allPokes = await getAllPokemonsReturn()
 
-        let seRepite = allPokes.filter((e) => e.name.toLowerCase() ===  name.toLowerCase())
+        let seRepite = allPokes.filter((e) => e.name.toLowerCase() === name.toLowerCase())
 
-        if(seRepite.length){
+        if (seRepite.length) {
             res.status(400).send("El nombre del Pokemon ya existe")
-        }else if(types.length <= 0){
+        } else if (types.length <= 0) {
             res.status(400).send("Olvidaste escoger un tipo de pokemon")
-        }else{
+        } else {
 
-            const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image }) 
+            const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image })
 
             types.map(async (t) => {
-                const newType = await Types.findAll({ 
-                  where: {name: t,},})
+                const newType = await Types.findAll({
+                    where: { name: t, },
+                })
                 nuevoPoke.addTypes(newType[0])
-              })
-            res.status(200).send('Pokemon agregado de manera exitosa.') 
+            })
+            res.status(200).send('Pokemon agregado de manera exitosa.')
         }
-        
+
     } catch (error) {
         res.status(404).send(error)
     }
 }
 
-const getTypePokemon = async (req, res) => {  
-    const pokemones = await getPokemonApi();
-    const allcontenedor = [];
-    
-    pokemones.map(t => allcontenedor.push((t.types[0] || t.types[1])))
-    const noRepeat = [...new Set(allcontenedor)] //Aca tengo los 9 types
 
-    noRepeat.forEach((e) => { //Me llegan 5 o 7 aveces
-        Types.findOrCreate({
-            where:{name: e}
-        })
-    })
+//BEFORE
+// const getTypePokemon = async (req, res) => {  
+//     const pokemones = await getPokemonApi();
+//     const allcontenedor = [];
 
-    const alltypes = await Types.findAll()
-    res.status(200).send(alltypes)
-    // return alltypes
-}
+//     pokemones.map(t => allcontenedor.push((t.types[0] || t.types[1])))
+//     const noRepeat = [...new Set(allcontenedor)] //Aca tengo los 9 types
 
-// const getTypePokemonSend = async(req,res) => { //Diferencia entre mandarlo asi y lo de arriba
-//     let tipos = await getTypePokemon(); //Sigue tirando el error
-//     res.status(200).send(tipos)
+//     noRepeat.forEach((e) => { //Me llegan 5 o 7 aveces
+//         Types.findOrCreate({
+//             where:{name: e}
+//         })
+//     })
+
+//     const alltypes = await Types.findAll()
+//     res.status(200).send(alltypes)
+//     // return alltypes
 // }
 
-const getPokemonsCratedByMyself = async(req,res) => {
-    try{
+
+const getTypePokemon = async (req, res) => {
+    try {
+        const typeURL = await axios.get("https://pokeapi.co/api/v2/type")
+        const types = typeURL.data.results
+
+        types.forEach((e) => {
+            Types.findOrCreate({
+                where: {name: e.name}
+            })
+        })
+        const allhere = await Types.findAll()
+        res.status(200).send(allhere)
+
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
+
+
+
+
+const getPokemonsCratedByMyself = async (req, res) => {
+    try {
         const myPokes = await Pokemon.findAll({
-            include:[{
+            include: [{
                 model: Types,
                 attributes: ["name"]
             }]
         })
         res.status(200).send(myPokes)
-    }catch(error){
+    } catch (error) {
         res.status(200).send(error)
     }
 }
 
 
-module.exports = { getPokemonApi,getPokemonApiSend, getAllPokemonsSend, getPokemonByName, 
-                   getTypePokemon, getPokemonsById,getPokemonsCratedByMyself, createPokemonBd}
+module.exports = {
+    getPokemonApi, getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
+    getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd
+}
