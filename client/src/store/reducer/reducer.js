@@ -39,7 +39,6 @@ const reducer = (state = initialState, action) => {
 
             }
         case "GET_POKEMONS_AGAIN":
-            console.log(action.payload)
             return {
                 ...state,
                 pokemonsfiltrados: action.payload
@@ -84,7 +83,6 @@ const reducer = (state = initialState, action) => {
             }
 
         case "GET_ONLY_CREATE":
-            console.log(action.payload)
             return {
                 ...state,
                 pokemonsfiltrados: action.payload
@@ -97,7 +95,6 @@ const reducer = (state = initialState, action) => {
             }
 
         case 'GET_DETAILS':
-            console.log(action.payload)
             return {
                 ...state,
                 detail: action.payload

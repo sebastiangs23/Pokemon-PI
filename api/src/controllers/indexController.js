@@ -237,10 +237,6 @@ const getTypePokemon = async (req, res) => {
     }
 }
 
-
-
-
-
 const getPokemonsCratedByMyself = async (req, res) => {
     try {
         const myPokes = await Pokemon.findAll({
@@ -255,8 +251,5 @@ const getPokemonsCratedByMyself = async (req, res) => {
     }
 }
 
-
-module.exports = {
-    getPokemonApi, getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
-    getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd
-}
+module.exports = { getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
+                   getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd }

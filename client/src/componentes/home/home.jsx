@@ -26,17 +26,15 @@ function Home() {
         setCurrentPage(numberPage)
     }
 
-    useEffect(() => {  //Error ms
+    useEffect(() => {  //Ms optimizado
         dispatch(getPokemonsBack())
-        // dispatch(getPokemonsBackAgain())  //PORQUE 2??
-        // dispatch(getPokemonType())  //No es necesario ??
         dispatch(getFilter())
-        dispatch(getAllTypes())  //Hay veces que la 1era vez solo me rendeeriza 5,
+        dispatch(getAllTypes())  //renderiza el select types
     }, [])
 
     function handleClick(e) {
         e.preventDefault()
-        dispatch(getPokemonsBackAgain())  //dispatch(getPokemonsBackAgain())  antes asi
+        dispatch(getPokemonsBackAgain())
     }
 
     function handleSortName(e) {
@@ -121,28 +119,35 @@ function Home() {
                 </div>
             </div>
 
-            <div className="contenedor-cards">
-                {PokeRender.map((p) => {
-                    return (
-                        <div className="individual-cards">
-                            <Link to={`home/detail/${p.id}`} className="link-line" >
-                                <h2> {p.name} </h2>
-                                <hr></hr>
-                                <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
-                                    : <div> {p.types.map((x) => {
-                                        return <h3> {x.name} </h3>
-                                    })}
-                                    </div>}
+            {PokeRender.length === 0 ? <h2 className="waiting-message"> Nothing Yet </h2>
+                : (
+                    <div className="contenedor-cards">
+                        {PokeRender.map((p) => {
+                            return (
+                                <div className="individual-cards">
+                                    <Link to={`home/detail/${p.id}`} className="link-line" >
+                                        <div className="wrap-divisor">
+                                            <h2> {p.name} </h2>
+                                            <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
+                                                : <div> {p.types.map((x) => {
+                                                    return <h3> {x.name} </h3>
+                                                })}
+                                                </div>}
+                                            </div>
+                                        </div>
+
+                                        <hr></hr>
+                                        <figure>
+                                            <img src={p.image} className="image-individual-card" />
+                                        </figure>
+                                    </Link>
                                 </div>
-                                <hr></hr>
-                                <figure>
-                                    <img src={p.image} className="image-individual-card" />
-                                </figure>
-                            </Link>
-                        </div>
-                    )
-                })}
-            </div>
+                            )
+                        })}
+                    </div>
+                )}
+
+
 
             <div >
                 <div>
@@ -154,7 +159,6 @@ function Home() {
                     )}
                 </div>
             </div>
-
 
         </div>
     )

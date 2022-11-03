@@ -11,7 +11,6 @@ function SearchBar() {
     const handleChange = (e) => { 
         e.preventDefault()
         setBuscar(e.target.value)
-        console.log(e.target.value)
     } 
     
     const handleSubmit = (s) => {

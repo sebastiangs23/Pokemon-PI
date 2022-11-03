@@ -1,28 +1,16 @@
 import axios from "axios";
 
-
-// export function getPokemonsBack() { //usar maybe async await
-//     return function (dispatch) {
-//         axios.get("http://localhost:3001/home/pokemons").then((p) => {
-//             return dispatch({
-//                 type: "GET_POKEMONS",
-//                 payload: p.data
-//             })
-//         })
-//     }
-// }
-
-export function getPokemonsBack() {
+export function getPokemonsBack() {  //Optimizado con async await, before it was only return 
     return async function (dispatch) {
-      var pokemons = await axios.get("http://localhost:3001/home/pokemons");
-      return dispatch({
-        type: "GET_POKEMONS",
-        payload: pokemons.data,
-      });
+        var pokemons = await axios.get("http://localhost:3001/home/pokemons");
+        return dispatch({
+            type: "GET_POKEMONS",
+            payload: pokemons.data,
+        });
     };
 }
 
-export function getPokemonsBackAgain() { 
+export function getPokemonsBackAgain() {
     return function (dispatch) {
         axios.get("http://localhost:3001/home/pokemons").then((p) => {
             return dispatch({
@@ -33,12 +21,11 @@ export function getPokemonsBackAgain() {
     }
 }
 
-
-export function getPokemonByName(name) { 
+export function getPokemonByName(name) {
     return function (dispatch) {
         return axios.get(`http://localhost:3001/home/pokemons/query?name=${name}`)
             .then((response) => {
-                console.log(response.data)
+                
                 return dispatch({
                     type: "GET_BY_NAME",
                     payload: response.data
@@ -63,12 +50,12 @@ export function getPokemonAtack(payload) {
 }
 
 export function getFilter() {
-    return {                
+    return {
         type: "GET_FILTER"
     }
 }
 
-export function getPokemonType(payload) { 
+export function getPokemonType(payload) {
     return {
         type: "FILTER_BY_TYPE",
         payload,
@@ -77,7 +64,7 @@ export function getPokemonType(payload) {
 
 export function getOnlyCreate(payload) {
 
-    if (payload === "us") { 
+    if (payload === "us") {
         return function (dispatch) {
             axios.get("http://localhost:3001/home/pokemons/mypokemons").then((p) => {
                 return dispatch({
@@ -87,7 +74,7 @@ export function getOnlyCreate(payload) {
             })
         }
     }
-    if (payload === "db") { 
+    if (payload === "db") {
         return function (dispatch) {
             axios.get("http://localhost:3001/home/pokemons/apipokemons").then((p) => {
                 return dispatch({
@@ -110,8 +97,8 @@ export function getOnlyCreate(payload) {
     }
 }
 
-export function getAllTypes(){
-    return async function(dispatch){
+export function getAllTypes() {
+    return async function (dispatch) {
         var types = await axios.get("http://localhost:3001/home/pokemons/types");
         return dispatch({
             type: "GET_TYPES",
@@ -120,36 +107,36 @@ export function getAllTypes(){
     }
 }
 
-export function postPokemon(payload){
-    return async function(dispatch){
-        try{
-            const upload = await axios.post("http://localhost:3001/home/pokemons", payload) 
+export function postPokemon(payload) {
+    return async function (dispatch) {
+        try {
+            const upload = await axios.post("http://localhost:3001/home/pokemons", payload)
             alert("Pokemon creado correctamente !!!")
-            return upload 
-        }catch(error){
+            return upload
+        } catch (error) {
             alert("Error el nombre ya existe u olvidaste escogerle types.")
         }
     }
-    
-}   
+
+}
 
 
-export function getDetailsId(id){
-    return async function(dispatch){
-        try{
+export function getDetailsId(id) {
+    return async function (dispatch) {
+        try {
             var rutaDetail = await axios.get(`http://localhost:3001/home/pokemons/codigo/${id}`);
             return dispatch({
-                type : 'GET_DETAILS',
+                type: 'GET_DETAILS',
                 payload: rutaDetail.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
-        
+
     }
 }
 
-export function returnOfDetails(){
+export function returnOfDetails() {
     return {
         type: "EMPTY_RETURN"
     }

@@ -30,11 +30,11 @@ function Details() {
                         <div className="wrap-card-detail">
 
                             <div className="name-types" >
-                                <h2> {p.name} </h2>
+                                <h2 className="name-h2"> {p.name} </h2>
 
-                                <div> {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3>{cadauno}</h3> })
+                                <div className="wrap-type-h3" > {typeof p.types[0] === "string" ? p.types.map((cadauno) => { return <h3 className="type-h3" > {cadauno}</h3> })
                                     : <div> {p.types.map((x) => {
-                                        return <h3> {x.name} </h3>
+                                        return <h3 className="type-h3"> {x.name} </h3>
                                     })}
                                     </div>}
                                 </div>
