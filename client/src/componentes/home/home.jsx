@@ -8,6 +8,7 @@ import {
 import SearchBar from "../searchBar/searchbar";
 import Paginado from "../paginado/paginado";
 import "./home.css"
+import "./nightmode.css"
 
 function Home() {
     const dispatch = useDispatch();
@@ -15,6 +16,16 @@ function Home() {
 
     const saveState = useSelector(state => state.pokemonsfiltrados)
     var types = useSelector((state) => state.alltypes)
+
+
+    //nightmode
+    const [botonState, setBotonState] = useState(false)
+
+    const handleClickC = () => {
+        setBotonState(botonState => !botonState)
+    }
+
+    let toggleClass = botonState ? " active" : "";
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -61,11 +72,19 @@ function Home() {
 
 
     return (
-        <div className="all-conteiner">
+        <div className={`all-conteiner${toggleClass}`}>
 
             <header>
                 <SearchBar />
+                <div>
+                    <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+                        <span> <i class="fa-solid fa-sun"></i> </span>
+                        <span> <i class="fa-solid fa-moon"></i> </span>
+                    </button>
+                </div>
             </header>
+
+
 
             <div className="contenedor-create-volver" >
                 <div className="wrap-back-button">
@@ -136,7 +155,7 @@ function Home() {
                                             </div>
                                         </div>
 
-                                        <hr></hr>
+                                        
                                         <figure>
                                             <img src={p.image} className="image-individual-card" />
                                         </figure>

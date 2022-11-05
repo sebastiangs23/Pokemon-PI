@@ -198,6 +198,32 @@ const createPokemonBd = async (req, res) => { //necestio cambiar esto //findOrCr
     }
 }
 
+// const createPokemonDb = async (req, res) => {
+//     try {
+
+//         const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
+
+//     } catch (error) {
+//         res.status(400).send(error)
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //BEFORE
 // const getTypePokemon = async (req, res) => {  
@@ -226,7 +252,7 @@ const getTypePokemon = async (req, res) => {
 
         types.forEach((e) => {
             Types.findOrCreate({
-                where: {name: e.name}
+                where: { name: e.name }
             })
         })
         const allhere = await Types.findAll()
@@ -251,5 +277,7 @@ const getPokemonsCratedByMyself = async (req, res) => {
     }
 }
 
-module.exports = { getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
-                   getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd }
+module.exports = {
+    getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
+    getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd
+}

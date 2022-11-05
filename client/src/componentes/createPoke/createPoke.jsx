@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllTypes, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
+import ModoNocturno from "../nightmode/nightmode"
 
 
 
@@ -250,6 +251,8 @@ function CreatePoke() {
     <div className="contenedor-componente">
 
       <h1> Create Pokemon  </h1>
+
+      <ModoNocturno/>
 
       <Link to="/home">
         <button className="boton-back"> <span> Back </span> </button>

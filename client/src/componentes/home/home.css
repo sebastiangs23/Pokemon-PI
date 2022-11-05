@@ -7,6 +7,11 @@ body{
 
 }
 
+.all-conteiner{
+    height: 1400px;
+    width: 1520px;
+}
+
 .contenedor-create-volver{
    margin-top: 50px;    
    height: 90px;
@@ -231,8 +236,7 @@ img{
 }
 
 .wrap-divisor {
-    background-color: whitesmoke;
-    
+    background-color: whitesmoke;   
 }
 
 .wra-ind-image{
