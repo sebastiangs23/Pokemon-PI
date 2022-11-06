@@ -4,10 +4,22 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailsId, returnOfDetails } from "../../store/actions/actionsPoke";
 import './details.css'
+import "../home/nightmode.css"
 
 function Details() {
     const dispatch = useDispatch();
     let { id } = useParams();
+
+
+    //nightmode
+    const [botonState, setBotonState] = useState(false)
+
+    const handleClickC = () => {
+        setBotonState(botonState => !botonState)
+    }
+
+    let toggleClass = botonState ? " active" : "";
+
 
     useEffect(() => {
         dispatch(getDetailsId(id))
@@ -23,7 +35,17 @@ function Details() {
     return (
 
         <div >
-            <div className="wrap-all" >
+            <div className={`wrap-all${toggleClass}`} >
+
+                <div className="blocktop-detail" >
+                    <div className="wrap-boton-night" >
+                        <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+                            <span> <i class="fa-solid fa-sun"></i> </span>
+                            <span> <i class="fa-solid fa-moon"></i> </span>
+                        </button>
+                    </div>
+
+                </div>
 
                 {pokemonDetalle.map((p) => {
                     return (
