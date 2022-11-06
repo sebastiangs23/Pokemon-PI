@@ -17,6 +17,19 @@
     background-size: cover;
 }
 
+.blocktop-create{
+    width: 100%;
+    background: black;
+    height: 65px;
+    overflow: hidden;
+}
+
+.blocktop-create h1{
+    float: left;
+    margin-left: 570px;
+    margin-right: 420px;    
+}
+
 .contenedor-form-createpokemon {
     width: 600px;
     height: 570px;
@@ -72,6 +85,8 @@
     color: black;
     border-radius: 10px;
     margin-left: 20px;
+    padding: 3px;
+    padding-left: 5px;
 }
 
 .contenedor-rellenar {
@@ -162,3 +177,6 @@
     font-family: bold;
     color: black;
 }
+
+
+

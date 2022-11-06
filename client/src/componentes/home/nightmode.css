@@ -8,6 +8,8 @@
     cursor: pointer;
     display: flex;
     outline: none;
+
+    margin-top: 14px;
 }
 
 .switch::after {
@@ -46,8 +48,9 @@
     color: #fff;
 }
 
-button {}
-
+.wrap-botton-night{
+    float: left;
+}
 
 /* change de  */
 
@@ -71,3 +74,31 @@ button {}
 .all-conteiner.active .individual-cards h2{
     color: lightgray;
 }
+
+
+
+/* create */
+
+.contenedor-componente.active {
+    background: url("https://img.freepik.com/vector-premium/fondo-negro-degradado-lineas-onduladas_23-2149159605.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.contenedor-componente.active .contenedor-form-createpokemon {
+    border: 2px solid #5C5C5C;
+    box-shadow: 0 0 20px 0 lightgray;
+}
+
+.contenedor-componente.active .blocktop-create h1{
+    color: #999999;   
+}
+
+.contenedor-componente.active input{
+    background-color: #262626;
+    color: lightgray;
+}
+
+

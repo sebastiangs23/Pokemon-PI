@@ -76,7 +76,7 @@ function Home() {
 
             <header>
                 <SearchBar />
-                <div>
+                <div className="wrap-boton-night" >
                     <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
                         <span> <i class="fa-solid fa-sun"></i> </span>
                         <span> <i class="fa-solid fa-moon"></i> </span>

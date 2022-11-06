@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getAllTypes, postPokemon, getPokemonsBackAgain } from "../../store/actions/actionsPoke"
-import ModoNocturno from "../nightmode/nightmode"
+import "../home/nightmode.css"
 
 
 
@@ -19,6 +19,18 @@ function CreatePoke() {
       [e.target.name]: e.target.value
     })
   }
+
+
+  //nightmode
+  const [botonState, setBotonState] = useState(false)
+
+  const handleClickC = () => {
+    setBotonState(botonState => !botonState)
+  }
+
+  let toggleClass = botonState ? " active" : "";
+
+
 
   //validaciones
   const [numberError, setNumberError] = useState(1)
@@ -248,15 +260,26 @@ function CreatePoke() {
 
 
   return (
-    <div className="contenedor-componente">
+    <div className={`contenedor-componente${toggleClass}`}>
 
-      <h1> Create Pokemon  </h1>
+      <div className="blocktop-create">
+        <h1> Create Pokemon  </h1>
+        <div className="wrap-botton-night" >
+          <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+            <span> <i class="fa-solid fa-sun"></i> </span>
+            <span> <i class="fa-solid fa-moon"></i> </span>
+          </button>
+        </div>
+      </div>
 
-      <ModoNocturno/>
+
+
 
       <Link to="/home">
         <button className="boton-back"> <span> Back </span> </button>
       </Link>
+
+
 
       <form onSubmit={(e) => handleSubmit(e)} className="contenedor-form-createpokemon" >
         <label className="contenedor-rellenar">
