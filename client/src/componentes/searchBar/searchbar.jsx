@@ -8,11 +8,11 @@ function SearchBar() {
 
     const [buscar, setBuscar] = useState("");
 
-    const handleChange = (e) => { 
+    const handleChange = (e) => {
         e.preventDefault()
         setBuscar(e.target.value)
-    } 
-    
+    }
+
     const handleSubmit = (s) => {
         s.preventDefault()
         dispatch(getPokemonByName(buscar))
@@ -21,9 +21,14 @@ function SearchBar() {
 
     return (
         <div className="contenedor-searchbar">
-            <form>  
+            <form>
                 <input onChange={handleChange} value={buscar} placeholder="Inserte una busqueda" className="input-searchbar" />
-                <button onClick={(c) => handleSubmit(c)} type="submit" > Aceptar </button>
+
+                <button onClick={(c) => handleSubmit(c)} type="submit" className="practicahover" >
+                    <span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                </button>
             </form>
         </div>
     )

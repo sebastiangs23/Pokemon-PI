@@ -11,14 +11,14 @@ function Details() {
     let { id } = useParams();
 
 
-    //nightmode
-    const [botonState, setBotonState] = useState(false)
 
-    const handleClickC = () => {
-        setBotonState(botonState => !botonState)
+    const [botonNight, setBotonNight] = useState(false)
+
+    const handleClickN = () => {
+        setBotonNight(botonNight => !botonNight)
     }
 
-    let toggleClass = botonState ? " active" : "";
+    let toggleClass = botonNight ? " active" : "";
 
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function Details() {
 
                 <div className="blocktop-detail" >
                     <div className="wrap-boton-night" >
-                        <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+                        <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickN() }} >
                             <span> <i class="fa-solid fa-sun"></i> </span>
                             <span> <i class="fa-solid fa-moon"></i> </span>
                         </button>

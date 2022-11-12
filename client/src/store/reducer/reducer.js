@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
                 pokemonsfiltrados: masOmenos,
             }
 
-        case "GET_FILTER":  //Esto va dentro del useEffect y evita que el estado se setee por lo filtrado
+        case "GET_FILTER":  
             return {
                 ...state
             }

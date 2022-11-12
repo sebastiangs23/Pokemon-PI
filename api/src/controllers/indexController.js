@@ -72,7 +72,6 @@ const getAllPokemonsSend = async (req, res) => {
         })
         const fullPokemons = allPokeDb.concat(allPokeApi)
         res.send(fullPokemons)
-
     } catch (error) {
         res.status(400).send(error)
     }
@@ -168,81 +167,6 @@ const getPokemonByName = async (req, res) => {
     }
 }
 
-const createPokemonBd = async (req, res) => { //necestio cambiar esto //findOrCreate
-    try {
-        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
-
-        let allPokes = await getAllPokemonsReturn()
-
-        let seRepite = allPokes.filter((e) => e.name.toLowerCase() === name.toLowerCase())
-
-        if (seRepite.length) {
-            res.status(400).send("El nombre del Pokemon ya existe")
-        } else if (types.length <= 0) {
-            res.status(400).send("Olvidaste escoger un tipo de pokemon")
-        } else {
-
-            const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image })
-
-            types.map(async (t) => {
-                const newType = await Types.findAll({
-                    where: { name: t, },
-                })
-                nuevoPoke.addTypes(newType[0])
-            })
-            res.status(200).send('Pokemon agregado de manera exitosa.')
-        }
-
-    } catch (error) {
-        res.status(404).send(error)
-    }
-}
-
-// const createPokemonDb = async (req, res) => {
-//     try {
-
-//         const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
-
-//     } catch (error) {
-//         res.status(400).send(error)
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//BEFORE
-// const getTypePokemon = async (req, res) => {  
-//     const pokemones = await getPokemonApi();
-//     const allcontenedor = [];
-
-//     pokemones.map(t => allcontenedor.push((t.types[0] || t.types[1])))
-//     const noRepeat = [...new Set(allcontenedor)] //Aca tengo los 9 types
-
-//     noRepeat.forEach((e) => { //Me llegan 5 o 7 aveces
-//         Types.findOrCreate({
-//             where:{name: e}
-//         })
-//     })
-
-//     const alltypes = await Types.findAll()
-//     res.status(200).send(alltypes)
-//     // return alltypes
-// }
 
 
 const getTypePokemon = async (req, res) => {
@@ -263,6 +187,33 @@ const getTypePokemon = async (req, res) => {
     }
 }
 
+
+const createPokemonBd = async (req, res) => {
+    try {
+        const { name, types, hp, attack, defense, speed, height, weight, image } = req.body
+
+        let allPokes = await getAllPokemonsReturn()
+        let seRepite = allPokes.filter((e) => e.name.toLowerCase() === name.toLowerCase())
+
+        if (seRepite.length || types.length <= 0) {
+            res.status(400).send("Pokemon nombre se repite o faltan tipos")
+        } else {
+            const nuevoPoke = await Pokemon.create({ name, hp, attack, defense, speed, height, weight, image })
+            types.map(async (t) => {
+                const newType = await Types.findAll({
+                    where: { name: t, },
+                })
+                nuevoPoke.addTypes(newType[0])
+            })
+            res.status(200).send('Pokemon agregado de manera exitosa.')
+        }
+    } catch (error) {
+        res.status(404).send(error)
+    }
+}
+
+
+
 const getPokemonsCratedByMyself = async (req, res) => {
     try {
         const myPokes = await Pokemon.findAll({
@@ -273,11 +224,27 @@ const getPokemonsCratedByMyself = async (req, res) => {
         })
         res.status(200).send(myPokes)
     } catch (error) {
-        res.status(200).send(error)
+        res.status(400).send(error)
     }
 }
 
+
+const borrar = async (req, res) => {
+    try {
+        const {id} = req.params;
+        return Pokemon.destroy({ where: {id} })
+            .then(() => res.status(200).send("Se borro de manera exitosa"))
+            .catch((error) => res.status(400).send(error))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+
 module.exports = {
     getPokemonApiSend, getAllPokemonsSend, getPokemonByName,
-    getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd
+    getTypePokemon, getPokemonsById, getPokemonsCratedByMyself, createPokemonBd, borrar
 }

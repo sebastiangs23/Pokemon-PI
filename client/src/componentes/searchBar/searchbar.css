@@ -21,3 +21,12 @@
     font-size: 20px;
     margin-top: 8px;
 }
+
+.fa-magnifying-glass{
+    font-size: 22px;
+    padding: 2px;
+}
+    
+.practicahover:hover{
+    background-color: gray;
+}

@@ -31,7 +31,7 @@ function LandingPage() {
                 </div>
 
                 <div className="historia">
-                    <p> La franquicia Pokémon originalmente nació como una serie de videojuegos para la consola Nintendo. Su creador es Satoshi Tajiri y el primero de ellos (denominado Pocket Monsters Aka and Midori) salió al mercado el 27 de febrero de 1996 A la fecha se han presentado al mercado alrededor de 50 videojuegos. </p>
+                    <p> La franquicia Pokémon originalmente nació como una serie de videojuegos para la consola Nintendo. Su creador es Satoshi Tajiri y el primero de ellos salió al mercado el 27 de febrero de 1996, Hasta el dia de hoy se han presentado al mercado alrededor de 50 videojuegos. </p>
                 </div>
 
 

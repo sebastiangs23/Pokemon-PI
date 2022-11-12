@@ -13,22 +13,14 @@ function CreatePoke() {
 
   const [inputs, setInputs] = useState({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] })
 
-  const handleChange = (e) => {
-    setInputs({
-      ...inputs,
-      [e.target.name]: e.target.value
-    })
-  }
+  
 
+  const [botonNight, setBotonNight] = useState(false)
+    const handleClickN = () => {
+        setBotonNight(botonNight => !botonNight)
+    }
 
-  //nightmode
-  const [botonState, setBotonState] = useState(false)
-
-  const handleClickC = () => {
-    setBotonState(botonState => !botonState)
-  }
-
-  let toggleClass = botonState ? " active" : "";
+    let toggleClass = botonNight ? " active" : "";
 
 
 
@@ -87,7 +79,6 @@ function CreatePoke() {
     })
   }
 
-
   const [heightError, setHeightError] = useState(1)
   const handleChangeHeight = (e) => {
     const valueHeight = e.target.value;
@@ -112,7 +103,6 @@ function CreatePoke() {
       [e.target.name]: e.target.value
     })
   }
-
 
   const [weightError, setWeightError] = useState(1)
   const handleChangeWeight = (e) => {
@@ -228,7 +218,7 @@ function CreatePoke() {
   }
 
 
-  //Handle
+  //
   function handleSelect(e) {
     setInputs({
       ...inputs,
@@ -247,16 +237,13 @@ function CreatePoke() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(postPokemon(inputs))
-    setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) //blank 
+    setInputs({ name: "", hp: "", attack: "", defense: "", speed: "", height: "", weight: "", image: "", types: [] }) 
   }
 
-
-
   useEffect(() => {
-    dispatch(getPokemonsBackAgain()) //the next one witch need to delete or optimizate
-    dispatch(getAllTypes())  //i only need to call it 1 time
+    dispatch(getPokemonsBackAgain()) 
+    dispatch(getAllTypes())  
   }, [])
-
 
 
   return (
@@ -265,7 +252,7 @@ function CreatePoke() {
       <div className="blocktop-create">
         <h1> Create Pokemon  </h1>
         <div className="wrap-botton-night" >
-          <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+          <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickN() }} >
             <span> <i class="fa-solid fa-sun"></i> </span>
             <span> <i class="fa-solid fa-moon"></i> </span>
           </button>

@@ -27,10 +27,15 @@ header{
     overflow: hidden;
 }
 
+.fa-rotate-right{
+    font-size: 31px;
+    padding: 3px;
+}
+
 .wrap-back-button {
     float: left;
     margin-left: 75px;
-    margin-right: 295px;
+    margin-right: 365px;
 
 }
 
@@ -38,6 +43,10 @@ header{
     cursor: pointer;
     border-radius: 5px;
     font-size: 18px;
+}
+
+.back-button:hover {
+    background-color: gray;
 }
 
 .wrap-link {
@@ -50,7 +59,6 @@ header{
 
 /*button create*/
 .button-create {
-
     align-items: center;
     justify-content: center;
     margin: 10px;

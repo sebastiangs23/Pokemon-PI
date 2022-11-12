@@ -15,17 +15,17 @@ function Home() {
     const [orden, setOrden] = useState([])
 
     const saveState = useSelector(state => state.pokemonsfiltrados)
+
     var types = useSelector((state) => state.alltypes)
 
 
-    //nightmode
-    const [botonState, setBotonState] = useState(false)
 
-    const handleClickC = () => {
-        setBotonState(botonState => !botonState)
+    const [botonNight, setBotonNight] = useState(false)
+    const handleClickN = () => {
+        setBotonNight(botonNight => !botonNight)
     }
+    let toggleClass = botonNight ? " active" : "";
 
-    let toggleClass = botonState ? " active" : "";
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -37,10 +37,10 @@ function Home() {
         setCurrentPage(numberPage)
     }
 
-    useEffect(() => {  //Ms optimizado
+    useEffect(() => {
         dispatch(getPokemonsBack())
         dispatch(getFilter())
-        dispatch(getAllTypes())  //renderiza el select types
+        dispatch(getAllTypes())
     }, [])
 
     function handleClick(e) {
@@ -77,7 +77,7 @@ function Home() {
             <header>
                 <SearchBar />
                 <div className="wrap-boton-night" >
-                    <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickC() }} >
+                    <button className={`switch${toggleClass}`} id="switch" onClick={() => { handleClickN() }} >
                         <span> <i class="fa-solid fa-sun"></i> </span>
                         <span> <i class="fa-solid fa-moon"></i> </span>
                     </button>
@@ -88,7 +88,9 @@ function Home() {
 
             <div className="contenedor-create-volver" >
                 <div className="wrap-back-button">
-                    <button className="back-button" onClick={e => { handleClick(e) }}>  Volver a cargar   </button>
+                    <button className="back-button" onClick={e => { handleClick(e) }}>
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
                 </div>
 
                 <div className="filtros-conteiner">
@@ -112,7 +114,7 @@ function Home() {
                     </div>
 
                     <div className="wrap-contenedor-createdatabase-createforus" >
-                        <h4> Db o Api </h4>
+                        <h4> Api o Db </h4>
                         <select onChange={(e) => handleApioCreate(e)} className="contenedor-createdatabase-createforus" >
                             <option value="all" > Select </option>
                             <option value="db"> Existente </option>
@@ -133,7 +135,7 @@ function Home() {
 
                 <div className="wrap-link" >
                     <Link to="/home/create"  >
-                        <button className="button-create" > <span> + Create  </span> </button>
+                        <button className="button-create" > <span>+ Create </span> </button>
                     </Link>
                 </div>
             </div>
@@ -155,7 +157,7 @@ function Home() {
                                             </div>
                                         </div>
 
-                                        
+
                                         <figure>
                                             <img src={p.image} className="image-individual-card" />
                                         </figure>

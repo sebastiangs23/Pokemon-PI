@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function getPokemonsBack() {  //Optimizado con async await, before it was only return 
+export function getPokemonsBack() {  
     return async function (dispatch) {
         var pokemons = await axios.get("http://localhost:3001/home/pokemons");
         return dispatch({
