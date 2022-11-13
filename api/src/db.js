@@ -6,6 +6,20 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
+// import { PORT, DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, DB_PORT } from "./config.js"
+
+//
+
+// const PORT = process.env.PORT || 5432;
+// const dbConfig = {
+//   host: process.env.DB.HOST || "localhost",
+//   port: process.env.DB_PORT || "3001",
+//   user: process.env.DB_USER || "postgres",
+//   password: process.env.DB_PASSWORD || "hardwork2309",
+//   database: process.env.DB_NAME || "postgres"
+// }
+
+
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
