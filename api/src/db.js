@@ -9,7 +9,6 @@ const {
 // import { PORT, DB_USER, DB_HOST, DB_PASSWORD, DB_NAME, DB_PORT } from "./config.js"
 
 //
-
 // const PORT = process.env.PORT || 5432;
 // const dbConfig = {
 //   host: process.env.DB.HOST || "localhost",
